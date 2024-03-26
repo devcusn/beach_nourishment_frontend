@@ -3,5 +3,4 @@ export type BeachSceneProps = {
   x: number;
   y: number;
   matris: Arrray<Array<number>>;
-  data: object;
 };

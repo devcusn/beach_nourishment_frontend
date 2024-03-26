@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Line, OrbitControls } from "@react-three/drei";
 import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
+import { Vector3 } from "three";
 
 const Square = ({
   position,
@@ -13,8 +14,9 @@ const Square = ({
 }) => {
   const pyramidRef = useRef(null);
   const edge = 0.9;
+
   return (
-    <mesh ref={pyramidRef} position={position}>
+    <mesh ref={pyramidRef} position={new Vector3(...position)}>
       <boxGeometry args={[edge, edge, edge]} />
       <meshStandardMaterial
         transparent={color === "blue"}
@@ -32,7 +34,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   y,
   matris,
 }) => {
-  const squares = matris.map((p) => (
+  const squares = matris.map((p: Array<number>) => (
     <Square
       key={Math.random()}
       position={[p[0] - x / 2, p[1], p[2]]}

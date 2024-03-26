@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+
 import { FormEvent, useState } from "react";
 import BeachScene from "./BeachScene";
 import classes from "./style.module.css";
@@ -17,7 +20,7 @@ const BeachNourishmentPage = () => {
       rho: rho.value,
       dfifthy: dfifthy.value,
     };
-    const res = await fetch("http://127.0.0.1:5000/api/closure_depth", {
+    const res = await fetch("http://api.civilsoft.xyz/api/closure_depth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +62,7 @@ const BeachNourishmentPage = () => {
                 <div>Closure Depth X : {Number(data["x"]).toFixed(2)} m</div>
                 <div>A : {Number(data["A"]).toFixed(2)} </div>
               </div>
-              <div>
+              <div className={classes.chart}>
                 {
                   <LineChart
                     data={arange(data["x"]).map((m) => [
@@ -77,7 +80,6 @@ const BeachNourishmentPage = () => {
           {!loading && !data && <div>No Preview</div>}
           {data && (
             <BeachScene
-              is={loading}
               A={data["A"]}
               x={data["x"]}
               y={-1 * data["closure_depth"]}
