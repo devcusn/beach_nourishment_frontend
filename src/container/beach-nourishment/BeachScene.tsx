@@ -33,12 +33,16 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   matris,
 }) => {
   const squares = matris.map((p) => (
-    <Square key={Math.random()} position={p} color={p[3]} />
+    <Square
+      key={Math.random()}
+      position={[p[0] - x / 2, p[1], p[2]]}
+      color={p[3]}
+    />
   ));
   return (
     <Canvas
       style={{ backgroundColor: "#f0f0f0", height: "100vh" }}
-      camera={{ fov: 50, near: 1, far: 1000, position: [0, 0, 50] }}
+      camera={{ fov: 50, near: 1, far: 1000, position: [25, 25, 50] }}
     >
       <ambientLight intensity={Math.PI / 2} />
       <spotLight
@@ -55,7 +59,11 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       />
       {squares}
       <Line
-        points={arange(x).map((m) => [m, -A * Math.pow(m, 2 / 3) - y, 0])}
+        points={arange(x).map((m) => [
+          m - x / 2,
+          -A * Math.pow(m, 2 / 3) - y,
+          0,
+        ])}
         color="blue" // Line color
         lineWidth={2} // Line width
       />
