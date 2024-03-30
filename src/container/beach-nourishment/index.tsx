@@ -20,7 +20,7 @@ const BeachNourishmentPage = () => {
       rho: rho.value,
       dfifthy: dfifthy.value,
     };
-    const res = await fetch("http://api.civilsoft.xyz/api/closure_depth", {
+    const res = await fetch("http://127.0.0.1:5000/api/closure_depth", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

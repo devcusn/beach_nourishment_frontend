@@ -1,30 +1,74 @@
-import { useRef } from "react";
-import { Canvas } from "@react-three/fiber";
+import { useEffect, useMemo, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { Line, OrbitControls } from "@react-three/drei";
 import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
-import { Vector3 } from "three";
+import * as THREE from "three";
 
-const Square = ({
-  position,
-  color,
+const BeachWater = ({
+  matris,
+  x,
 }: {
-  position: Array<number>;
-  color: string | number;
+  matris: Array<Array<number>>;
+  x: number;
 }) => {
-  const pyramidRef = useRef(null);
-  const edge = 0.9;
+  const dummy = new THREE.Object3D();
+  const dummyColor = new THREE.Color();
+
+  const meshRef = useRef(null);
+  const edge = 0.4;
+  console.log(x);
+  useEffect(() => {
+    for (let m = 0; m < matris.length; m++) {
+      const color = matris[m][3];
+      dummy.position.set(matris[m][0] - x / 2, matris[m][1], matris[m][2]);
+      dummy.rotation.z = dummy.rotation.y * 2;
+      dummy.updateMatrix();
+      meshRef.current.setColorAt(m, dummyColor.set(color));
+      meshRef.current.setMatrixAt(m, dummy.matrix);
+    }
+    meshRef.current.instanceMatrix.needsUpdate = true;
+    meshRef.current.instanceColor.needsUpdate = true;
+  }, [matris]);
 
   return (
-    <mesh ref={pyramidRef} position={new Vector3(...position)}>
+    <instancedMesh ref={meshRef} args={[undefined, undefined, matris.length]}>
       <boxGeometry args={[edge, edge, edge]} />
-      <meshStandardMaterial
-        transparent={color === "blue"}
-        opacity={0.1}
-        attach="material"
-        color={color}
-      />
-    </mesh>
+      <meshBasicMaterial transparent opacity={0.4} />
+    </instancedMesh>
+  );
+};
+
+const BeachPreview = ({
+  matris,
+  x,
+}: {
+  matris: Array<Array<number>>;
+  x: number;
+}) => {
+  const dummy = new THREE.Object3D();
+  const dummyColor = new THREE.Color();
+
+  const meshRef = useRef(null);
+  const edge = 0.9;
+  useEffect(() => {
+    for (let m = 0; m < matris.length; m++) {
+      const color = matris[m][3];
+      dummy.position.set(matris[m][0] - x / 2, matris[m][1], matris[m][2]);
+      dummy.rotation.z = dummy.rotation.y * 2;
+      dummy.updateMatrix();
+      meshRef.current.setColorAt(m, dummyColor.set(color));
+      meshRef.current.setMatrixAt(m, dummy.matrix);
+    }
+    meshRef.current.instanceMatrix.needsUpdate = true;
+    meshRef.current.instanceColor.needsUpdate = true;
+  }, [matris]);
+
+  return (
+    <instancedMesh ref={meshRef} args={[undefined, undefined, matris.length]}>
+      <boxGeometry args={[edge, edge, edge]} />
+      <meshBasicMaterial />
+    </instancedMesh>
   );
 };
 
@@ -34,13 +78,17 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   y,
   matris,
 }) => {
-  const squares = matris.map((p: Array<number>) => (
-    <Square
-      key={Math.random()}
-      position={[p[0] - x / 2, p[1], p[2]]}
-      color={p[3]}
-    />
-  ));
+  // const squares = matris.map((p: Array<number>) => (
+  //   <Square
+  //     key={Math.random()}
+  //     position={[p[0] - x / 2, p[1], p[2]]}
+  //     color={p[3]}
+  //   />
+  // ));
+  const water = matris.filter((m) => m[3] === "blue");
+  const soil = matris.filter((m) => m[3] === "orange");
+  console.log(water.length);
+  console.log(soil.length);
   return (
     <Canvas
       style={{ backgroundColor: "#f0f0f0", height: "100vh" }}
@@ -59,7 +107,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       <gridHelper
         args={[matris.length / 10, matris.length / 10, "red", "teal"]}
       />
-      {squares}
+      {/* {squares} */}
       <Line
         points={arange(x).map((m) => [
           m - x / 2,
@@ -69,6 +117,8 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
         color="blue" // Line color
         lineWidth={2} // Line width
       />
+      <BeachWater matris={water} x={x} />
+      <BeachPreview matris={soil} x={x} />
     </Canvas>
   );
 };
