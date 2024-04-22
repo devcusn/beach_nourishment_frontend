@@ -5,10 +5,10 @@ import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
 
-const BeachRevetment = ({ revetment }) => {
+const BeachRevetment = ({ revetment, beach_length }) => {
   return (
-    <mesh position={[0, 2, 0]}>
-      <boxGeometry args={[1, 2, 6]} />
+    <mesh position={[0, 1, beach_length / 2 + 1]}>
+      <boxGeometry args={[1, 3, beach_length]} />
       <meshBasicMaterial color={"purple"} />
     </mesh>
   );
@@ -132,7 +132,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       />
       <BeachWater matris={water} x={x} />
       <BeachSoil matris={soil} x={x} />
-      <BeachRevetment revetment={revetment} />
+      <BeachRevetment revetment={revetment} beach_length={z} />
     </Canvas>
   );
 };

@@ -132,8 +132,12 @@ const BeachNourishmentPage = () => {
                 <div>
                   Closure Depth: {Number(data["closure_depth"]).toFixed(2)} m
                 </div>
-                <div>Closure Depth X : {Number(data["x"]).toFixed(2)} m</div>
+                <div>
+                  Closure Depth X : {Number(data["closure_depth_x"]).toFixed(2)}{" "}
+                  m
+                </div>
                 <div>A : {Number(data["A"]).toFixed(2)} </div>
+                <div>Volume : {Number(data["volume"]).toFixed(2)} m^3 </div>
                 <button onClick={() => setToggleReport(true)}>
                   Open Report
                 </button>
@@ -141,11 +145,11 @@ const BeachNourishmentPage = () => {
               <div className={classes.chart}>
                 {
                   <LineChart
-                    data={arange(data["x"]).map((m) => [
+                    data={arange(data["closure_depth_x"]).map((m) => [
                       m,
                       -1 * data["A"] * Math.pow(m, 2 / 3),
                     ])}
-                    data2={arange(data["x"]).map((m) => [
+                    data2={arange(data["closure_depth_x"]).map((m) => [
                       m,
                       -1 * data["A"] * Math.pow(m, 2 / 3),
                     ])}
@@ -161,7 +165,7 @@ const BeachNourishmentPage = () => {
           {data && (
             <BeachScene
               A={data["A"]}
-              x={data["x"]}
+              x={data["closure_depth_x"]}
               z={data["total_length"]}
               y={-1 * data["closure_depth"]}
               matris={data["matris"]}
