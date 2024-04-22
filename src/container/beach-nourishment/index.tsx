@@ -16,14 +16,25 @@ const BeachNourishmentPage = () => {
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    const { wave_height, wave_period, D, rho, dfifthy, totalLength } = e.target;
+    const {
+      wave_height,
+      wave_period,
+      D,
+      rho,
+      dfifthy,
+      totalLength,
+      lengthOfBeach,
+      revetment,
+    } = e.target;
     const values = {
       wave_height: wave_height.value,
       wave_period: wave_period.value,
       D: D.value,
       rho: rho.value,
       dfifthy: dfifthy.value,
-      totalLength: totalLength.value,
+      total_length: totalLength.value,
+      length_of_beach: lengthOfBeach.value,
+      revetment: revetment.value,
     };
     const res = await fetch("http://127.0.0.1:5000/api/closure_depth", {
       method: "POST",
@@ -54,16 +65,24 @@ const BeachNourishmentPage = () => {
               />
             </div>
             <div>
-              <span className={classes.label}>Distance to beach(m)</span>
+              <span className={classes.label}>Length of the beach(m)</span>
               <input
                 defaultValue={3}
-                name="distanceToBeach"
-                placeholder="Distance to beach(m)"
+                name="lengthOfBeach"
+                placeholder="length of beach(m)"
               />
             </div>
             <div>
               <span className={classes.label}>Erosion %</span>
               <input defaultValue={60} name="erosion" placeholder="Erozion" />
+            </div>
+            <div>
+              <span className={classes.label}>Revetment Depth(m)</span>
+              <input
+                defaultValue={3}
+                name="revetment"
+                placeholder="revetment depth(m)"
+              />
             </div>
             <span>Wave Properties</span>
             <div>
@@ -126,6 +145,10 @@ const BeachNourishmentPage = () => {
                       m,
                       -1 * data["A"] * Math.pow(m, 2 / 3),
                     ])}
+                    data2={arange(data["x"]).map((m) => [
+                      m,
+                      -1 * data["A"] * Math.pow(m, 2 / 3),
+                    ])}
                   />
                 }
               </div>
@@ -139,8 +162,11 @@ const BeachNourishmentPage = () => {
             <BeachScene
               A={data["A"]}
               x={data["x"]}
+              z={data["total_length"]}
               y={-1 * data["closure_depth"]}
               matris={data["matris"]}
+              beach_length={data["beach_length"]}
+              revetment={data["revetment"]}
             />
           )}
         </div>

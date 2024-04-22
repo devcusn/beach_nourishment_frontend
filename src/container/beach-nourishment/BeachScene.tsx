@@ -1,9 +1,18 @@
-import { useEffect, useMemo, useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import { Canvas } from "@react-three/fiber";
 import { Line, OrbitControls } from "@react-three/drei";
 import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
+
+const BeachRevetment = ({ revetment }) => {
+  return (
+    <mesh position={[0, 2, 0]}>
+      <boxGeometry args={[1, 2, 6]} />
+      <meshBasicMaterial color={"purple"} />
+    </mesh>
+  );
+};
 
 const BeachWater = ({
   matris,
@@ -17,7 +26,7 @@ const BeachWater = ({
 
   const meshRef = useRef(null);
   const edge = 0.9;
-  console.log(x);
+
   useEffect(() => {
     for (let m = 0; m < matris.length; m++) {
       const color = matris[m][3];
@@ -39,7 +48,7 @@ const BeachWater = ({
   );
 };
 
-const BeachPreview = ({
+const BeachSoil = ({
   matris,
   x,
 }: {
@@ -77,7 +86,10 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   A,
   x,
   y,
+  z,
   matris,
+  beach_length,
+  revetment,
 }) => {
   // const squares = matris.map((p: Array<number>) => (
   //   <Square
@@ -111,15 +123,16 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       {/* {squares} */}
       <Line
         points={arange(x).map((m) => [
-          m - x / 2,
+          m - x / 2 + beach_length,
           -A * Math.pow(m, 2 / 3) - y,
-          0,
+          z,
         ])}
-        color="blue" // Line color
-        lineWidth={2} // Line width
+        color="red" // Line color
+        lineWidth={5} // Line width
       />
       <BeachWater matris={water} x={x} />
-      <BeachPreview matris={soil} x={x} />
+      <BeachSoil matris={soil} x={x} />
+      <BeachRevetment revetment={revetment} />
     </Canvas>
   );
 };

@@ -2,5 +2,7 @@ export type BeachSceneProps = {
   A: number;
   x: number;
   y: number;
-  matris: Arrray<Array<number>>;
+  matris: Array<Array<number>>;
+  beach_length: number;
+  revetment: number;
 };
