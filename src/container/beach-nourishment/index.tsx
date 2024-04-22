@@ -6,19 +6,24 @@ import BeachScene from "./BeachScene";
 import classes from "./style.module.css";
 import LineChart from "./Chart";
 import { arange } from "../../utils/arange";
+import Report from "../../components/Report/Report";
+
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [toggleReport, setToggleReport] = useState(false);
+
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
-    const { wave_height, wave_period, D, rho, dfifthy } = e.target;
+    const { wave_height, wave_period, D, rho, dfifthy, totalLength } = e.target;
     const values = {
       wave_height: wave_height.value,
       wave_period: wave_period.value,
       D: D.value,
       rho: rho.value,
       dfifthy: dfifthy.value,
+      totalLength: totalLength.value,
     };
     const res = await fetch("http://127.0.0.1:5000/api/closure_depth", {
       method: "POST",
@@ -31,7 +36,6 @@ const BeachNourishmentPage = () => {
     setLoading(false);
     setData(data.data);
   };
-
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>
@@ -40,13 +44,63 @@ const BeachNourishmentPage = () => {
       <div className={classes.layout}>
         <div className={classes.layout_left}>
           <form onSubmit={formHandle} className={classes.inputs}>
+            <span>Coast</span>
+            <div>
+              <span className={classes.label}>Total Lenght(m)</span>
+              <input
+                defaultValue={3}
+                name="totalLength"
+                placeholder="Total Lenght(m)"
+              />
+            </div>
+            <div>
+              <span className={classes.label}>Distance to beach(m)</span>
+              <input
+                defaultValue={3}
+                name="distanceToBeach"
+                placeholder="Distance to beach(m)"
+              />
+            </div>
+            <div>
+              <span className={classes.label}>Erosion %</span>
+              <input defaultValue={60} name="erosion" placeholder="Erozion" />
+            </div>
             <span>Wave Properties</span>
-            <input name="wave_height" placeholder="Add wave height" />
-            <input name="wave_period" placeholder="Add wave Period" />
+            <div>
+              <span className={classes.label}>Wave Height(m):</span>
+              <input
+                defaultValue={2.5}
+                name="wave_height"
+                placeholder="Add wave height(m)"
+              />
+            </div>
+
+            <div>
+              <span className={classes.label}>Wave Period:</span>
+              <input
+                defaultValue={8}
+                name="wave_period"
+                placeholder="Add wave Period"
+              />
+            </div>
+
             <span>Soil Properties</span>
-            <input name="D" placeholder="Add  D" />
-            <input name="dfifthy" placeholder="Add  dfifthy" />
-            <input name="rho" placeholder="Add rho" />
+            <div>
+              <span className={classes.label}>D:</span>
+              <input defaultValue={1} name="D" placeholder="Add  D" />
+            </div>
+            <div>
+              <span className={classes.label}>D50:</span>
+              <input
+                defaultValue={1}
+                name="dfifthy"
+                placeholder="Add  dfifthy"
+              />
+            </div>
+            <div>
+              <span className={classes.label}>RHO:</span>
+              <input defaultValue={1} name="rho" placeholder="Add rho" />
+            </div>
             <div className={classes.actions}>
               <button className={classes.btn} type="submit">
                 Calculate Closure Depth
@@ -61,6 +115,9 @@ const BeachNourishmentPage = () => {
                 </div>
                 <div>Closure Depth X : {Number(data["x"]).toFixed(2)} m</div>
                 <div>A : {Number(data["A"]).toFixed(2)} </div>
+                <button onClick={() => setToggleReport(true)}>
+                  Open Report
+                </button>
               </div>
               <div className={classes.chart}>
                 {
@@ -88,6 +145,7 @@ const BeachNourishmentPage = () => {
           )}
         </div>
       </div>
+      {toggleReport && <Report />}
     </>
   );
 };

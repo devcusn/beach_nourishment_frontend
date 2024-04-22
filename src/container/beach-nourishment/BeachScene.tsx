@@ -16,7 +16,7 @@ const BeachWater = ({
   const dummyColor = new THREE.Color();
 
   const meshRef = useRef(null);
-  const edge = 0.4;
+  const edge = 0.9;
   console.log(x);
   useEffect(() => {
     for (let m = 0; m < matris.length; m++) {
@@ -50,7 +50,8 @@ const BeachPreview = ({
   const dummyColor = new THREE.Color();
 
   const meshRef = useRef(null);
-  const edge = 0.9;
+  const edge = 0.4;
+
   useEffect(() => {
     for (let m = 0; m < matris.length; m++) {
       const color = matris[m][3];
@@ -92,7 +93,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   return (
     <Canvas
       style={{ backgroundColor: "#f0f0f0", height: "100vh" }}
-      camera={{ fov: 50, near: 1, far: 1000, position: [25, 25, 50] }}
+      camera={{ fov: 50, near: 1, far: 100000000, position: [25, 25, 50] }}
     >
       <ambientLight intensity={Math.PI / 2} />
       <spotLight
