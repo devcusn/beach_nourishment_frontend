@@ -1,9 +1,12 @@
 import classes from "./style.module.css";
+import { ReportProps } from "./types";
 
-const Report = () => {
+const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
   return (
-    <div className={classes.report_container}>
-      <div className={classes.report}>hello</div>
+    <div className={classes.report_container} onClick={toggleReport}>
+      <div onClick={(e) => e.stopPropagation()} className={classes.report}>
+        hello
+      </div>
     </div>
   );
 };

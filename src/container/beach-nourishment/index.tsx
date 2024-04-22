@@ -145,7 +145,9 @@ const BeachNourishmentPage = () => {
           )}
         </div>
       </div>
-      {toggleReport && <Report />}
+      {toggleReport && (
+        <Report toggleReport={() => setToggleReport(!toggleReport)} />
+      )}
     </>
   );
 };
