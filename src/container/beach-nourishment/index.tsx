@@ -8,6 +8,7 @@ import LineChart from "./Chart";
 import { arange } from "../../utils/arange";
 import Report from "../../components/Report/Report";
 import useProjectStore from "../../store/projectStore";
+import LoaderNoPreview from "../../components/LoaderNoPreview";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
@@ -160,8 +161,13 @@ const BeachNourishmentPage = () => {
           )}
         </div>
         <div className={classes.layout_right}>
-          {loading && <>Loading</>}
-          {!loading && !data && <div>No Preview</div>}
+          {!data && (
+            <LoaderNoPreview
+              isLoading={loading}
+              noPreview={!loading && !data}
+            />
+          )}
+
           {data && (
             <BeachScene
               A={data["A"]}

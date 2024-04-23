@@ -1,10 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Line, OrbitControls } from "@react-three/drei";
+import { Line, OrbitControls, Text } from "@react-three/drei";
 import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
-
 const BeachRevetment = ({ revetment, beach_length, coast_length }) => {
   console.log("beach_length", beach_length);
   console.log("coast_length", coast_length);
@@ -97,7 +96,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   const soil = matris.filter((m) => m[3] === "orange");
   return (
     <Canvas
-      style={{ backgroundColor: "#f0f0f0", height: "100vh" }}
+      style={{ backgroundColor: "#f0f0f0", height: "100%" }}
       camera={{ fov: 50, near: 1, far: 100000000, position: [25, 25, 50] }}
     >
       <ambientLight intensity={Math.PI / 2} />
@@ -113,15 +112,14 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       <gridHelper
         args={[matris.length / 10, matris.length / 10, "red", "teal"]}
       />
-      {/* {squares} */}
       <Line
         points={arange(x).map((m) => [
           m - x / 2 + beach_length,
           -A * Math.pow(m, 2 / 3) - y,
           coast_length,
         ])}
-        color="red" // Line color
-        lineWidth={5} // Line width
+        color="red"
+        lineWidth={5}
       />
       <BeachWater matris={water} x={x} />
       <BeachSoil matris={soil} x={x} />

@@ -9,6 +9,9 @@
 }
 
 .layout_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   border-left: 1px black solid;
   min-height: 100%;
@@ -53,6 +56,9 @@
   display: inline-block;
   min-width: 100px;
   font-size: 12px;
+}
+.no_preview {
+  font-weight: bold;
 }
 @media only screen and (max-width: 600px) {
   .layout {
