@@ -118,7 +118,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
         points={arange(x).map((m) => [
           m - x / 2 + beach_length,
           -A * Math.pow(m, 2 / 3) - y,
-          beach_length,
+          coast_length,
         ])}
         color="red" // Line color
         lineWidth={5} // Line width
