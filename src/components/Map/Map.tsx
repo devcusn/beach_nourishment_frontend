@@ -46,12 +46,12 @@ const CreatePolyLine = ({ isActive }) => {
   );
 };
 
-const Map = () => {
+const Map = ({ height }) => {
   const navigate = useNavigate();
   const position = [40.9, 38.39];
   const [feat, setFeat] = useState("");
   return (
-    <div style={{ width: "100%", height: "100vh" }}>
+    <div style={{ width: "100%", height: height }}>
       <div className={classes.map_actions}>
         <button
           className={classes.feat_btn}

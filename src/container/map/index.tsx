@@ -3,7 +3,7 @@ import Map from "../../components/Map/Map";
 const MapContainer = () => {
   return (
     <div>
-      <Map />
+      <Map height={"100vh"} />
     </div>
   );
 };

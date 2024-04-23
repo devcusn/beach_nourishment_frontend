@@ -5,6 +5,7 @@ import { arange } from "../../utils/arange";
 import ReportSection from "./Section";
 import classes from "./style.module.css";
 import { ReportProps } from "./types";
+import Map from "../Map/Map";
 
 const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
   const { name, project } = useProjectStore();
@@ -63,6 +64,17 @@ const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
               ])}
               beach_length={project["beach_length"]}
             />
+          </div>
+        </ReportSection>
+        <ReportSection title={"Location"}>
+          <div
+            style={{
+              display: "flex",
+              height: "200px",
+              justifyContent: "center",
+            }}
+          >
+            <Map height={"400px"} />
           </div>
         </ReportSection>
       </div>
