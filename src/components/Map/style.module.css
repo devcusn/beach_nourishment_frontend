@@ -1,0 +1,8 @@
+.map_actions {
+  display: flex;
+  padding: 4px;
+  gap: 4px;
+}
+.feat_btn {
+  padding: 4px;
+}

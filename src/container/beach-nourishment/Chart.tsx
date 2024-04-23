@@ -26,6 +26,7 @@ const LineChart: React.FunctionComponent<{
   console.log(beach_length);
   const datas = {
     labels: arange(data.length + beach_length),
+
     datasets: [
       {
         label: "From Coast",

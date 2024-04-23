@@ -1,14 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BeachNourishment from "./container/beach-nourishment";
-import Scene from "./container/Scene";
+import Home from "./container/home";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <BeachNourishment />,
+    element: <Home />,
   },
   {
-    path: "/scene",
-    element: <Scene />,
+    path: "/beach-nourishment",
+    element: <BeachNourishment />,
   },
 ]);
 function App() {
