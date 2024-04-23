@@ -6,3 +6,8 @@
 .feat_btn {
   padding: 4px;
 }
+
+.menu_second {
+  display: flex;
+  justify-content: flex-end;
+}

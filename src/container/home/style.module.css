@@ -1,0 +1,50 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../../assets//beach.jpeg");
+  background-size: cover;
+  background-position: 50%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 60px;
+}
+.app_name {
+  font-size: 54px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-top: 140px;
+}
+.project_name {
+  padding: 10px;
+  margin-bottom: 24px;
+  font-family: sans-serif;
+  font-size: 28px;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.project_name_input {
+  padding: 4px;
+  width: 400px;
+  font-size: 24px;
+}
+.big_btn {
+  padding: 12px 20px;
+  width: 200px;
+  margin-top: 10px;
+  border: none;
+  cursor: pointer;
+}
+.big_btn:hover {
+  background-color: #fdfdfd;
+}

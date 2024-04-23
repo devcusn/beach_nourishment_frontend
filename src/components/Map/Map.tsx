@@ -63,6 +63,9 @@ const Map = () => {
         >
           Create Polygone
         </button>
+        <div className={classes.menu_second}>
+          <button>Next Step</button>
+        </div>
       </div>
       <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
         <TileLayer
