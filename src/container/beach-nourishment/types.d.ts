@@ -5,4 +5,5 @@ export type BeachSceneProps = {
   matris: Array<Array<number>>;
   beach_length: number;
   revetment: number;
+  coast_length: number;
 };

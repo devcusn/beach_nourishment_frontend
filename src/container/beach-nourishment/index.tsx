@@ -47,6 +47,7 @@ const BeachNourishmentPage = () => {
     setLoading(false);
     setData(data.data);
   };
+  console.log(data);
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>
@@ -170,7 +171,8 @@ const BeachNourishmentPage = () => {
               y={-1 * data["closure_depth"]}
               matris={data["matris"]}
               beach_length={data["beach_length"]}
-              revetment={data["revetment"]}
+              coast_length={data["total_length"]}
+              revetment={data["revetment_position"]}
             />
           )}
         </div>

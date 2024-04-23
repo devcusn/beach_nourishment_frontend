@@ -5,10 +5,12 @@ import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
 
-const BeachRevetment = ({ revetment, beach_length }) => {
+const BeachRevetment = ({ revetment, beach_length, coast_length }) => {
+  console.log("beach_length", beach_length);
+  console.log("coast_length", coast_length);
   return (
-    <mesh position={[0, 1, beach_length / 2 + 1]}>
-      <boxGeometry args={[1, 3, beach_length]} />
+    <mesh position={[revetment / 2 + beach_length, 1, coast_length / 2 + 1]}>
+      <boxGeometry args={[1, 3, coast_length]} />
       <meshBasicMaterial color={"purple"} />
     </mesh>
   );
@@ -86,22 +88,13 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   A,
   x,
   y,
-  z,
   matris,
   beach_length,
+  coast_length,
   revetment,
 }) => {
-  // const squares = matris.map((p: Array<number>) => (
-  //   <Square
-  //     key={Math.random()}
-  //     position={[p[0] - x / 2, p[1], p[2]]}
-  //     color={p[3]}
-  //   />
-  // ));
   const water = matris.filter((m) => m[3] === "blue");
   const soil = matris.filter((m) => m[3] === "orange");
-  console.log(water.length);
-  console.log(soil.length);
   return (
     <Canvas
       style={{ backgroundColor: "#f0f0f0", height: "100vh" }}
@@ -125,14 +118,18 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
         points={arange(x).map((m) => [
           m - x / 2 + beach_length,
           -A * Math.pow(m, 2 / 3) - y,
-          z,
+          beach_length,
         ])}
         color="red" // Line color
         lineWidth={5} // Line width
       />
       <BeachWater matris={water} x={x} />
       <BeachSoil matris={soil} x={x} />
-      <BeachRevetment revetment={revetment} beach_length={z} />
+      <BeachRevetment
+        revetment={revetment}
+        beach_length={beach_length}
+        coast_length={coast_length}
+      />
     </Canvas>
   );
 };
