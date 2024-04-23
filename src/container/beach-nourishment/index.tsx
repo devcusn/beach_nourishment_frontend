@@ -7,12 +7,13 @@ import classes from "./style.module.css";
 import LineChart from "./Chart";
 import { arange } from "../../utils/arange";
 import Report from "../../components/Report/Report";
+import useProjectStore from "../../store/projectStore";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [toggleReport, setToggleReport] = useState(false);
-
+  const setProject = useProjectStore((state) => state.setProject);
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -44,10 +45,11 @@ const BeachNourishmentPage = () => {
       body: JSON.stringify(values),
     });
     const data = await res.json();
+
     setLoading(false);
     setData(data.data);
+    setProject(data.data);
   };
-  console.log(data);
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>

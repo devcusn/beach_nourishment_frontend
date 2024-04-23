@@ -11,6 +11,7 @@ import {
 } from "react-leaflet";
 import calculateArea from "../../utils/area";
 import classes from "./style.module.css";
+import { useNavigate } from "react-router-dom";
 
 const CreatePolygon = ({ isActive }) => {
   const [polygones, setpolygonesPoints] = useState([]);
@@ -46,6 +47,7 @@ const CreatePolyLine = ({ isActive }) => {
 };
 
 const Map = () => {
+  const navigate = useNavigate();
   const position = [40.9, 38.39];
   const [feat, setFeat] = useState("");
   return (
@@ -64,7 +66,9 @@ const Map = () => {
           Create Polygone
         </button>
         <div className={classes.menu_second}>
-          <button>Next Step</button>
+          <button onClick={() => navigate("/beach-nourishment")}>
+            Next Step
+          </button>
         </div>
       </div>
       <MapContainer center={position} zoom={13} scrollWheelZoom={true}>

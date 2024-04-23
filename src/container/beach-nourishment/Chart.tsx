@@ -43,11 +43,7 @@ const LineChart: React.FunctionComponent<{
     ],
   };
 
-  return (
-    <div>
-      <Line data={datas} />
-    </div>
-  );
+  return <Line data={datas} />;
 };
 
 export default LineChart;

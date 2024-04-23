@@ -10,9 +10,25 @@
 }
 
 .report {
-  background-color: #ffffff;
   max-width: 1000px;
   width: 100%;
   height: 90vh;
   border-radius: 4px;
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+.project_name {
+  text-transform: capitalize;
+  font-family: sans-serif;
+  padding: 20px 0px;
+}
+
+.report_section__title {
+  font-weight: bold;
+  font-size: 16px;
+}
+.report_section__content {
+  display: flex;
+  flex-direction: column;
 }
