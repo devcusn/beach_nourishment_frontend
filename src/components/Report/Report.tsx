@@ -6,7 +6,8 @@ import ReportSection from "./Section";
 import classes from "./style.module.css";
 import { ReportProps } from "./types";
 import Map from "../Map/Map";
-
+import KaTeX from "../Katex";
+import "katex/dist/katex.min.css";
 const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
   const { name, project } = useProjectStore();
   const ref = useRef<HTMLDivElement>(null);
@@ -23,6 +24,18 @@ const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
         className={classes.report}
       >
         <h2 className={classes.project_name}>{name}</h2>
+        <ReportSection title={"Formulas"}>
+          <div
+            style={{
+              height: "200px",
+              justifyContent: "center",
+            }}
+          >
+            <KaTeX texExpression="A=\frac{24 \times D \times dfifthy}{5 \times \rho \times \left( \frac{\text{self.gravity}^{3/2}}{\text{self.k}^2} \right)^{2/3}}" />
+            <KaTeX texExpression="\text{closure\ depth} = 2.28 \times h_s - 68.5 \times \frac{{h_s^2}}{{\text{gravity} \times t_m^2}}" />
+            <KaTeX texExpression="h = A \times y^{\frac{2}{3}}" />
+          </div>
+        </ReportSection>
         <ReportSection title="Project Datas">
           <div>
             <span>Closure Depth x(m):</span>
