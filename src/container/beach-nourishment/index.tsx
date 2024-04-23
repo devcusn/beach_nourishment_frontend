@@ -150,10 +150,7 @@ const BeachNourishmentPage = () => {
                       m,
                       -1 * data["A"] * Math.pow(m, 2 / 3),
                     ])}
-                    data2={arange(data["closure_depth_x"]).map((m) => [
-                      m,
-                      -1 * data["A"] * Math.pow(m, 2 / 3),
-                    ])}
+                    beach_length={data["beach_length"]}
                   />
                 }
               </div>

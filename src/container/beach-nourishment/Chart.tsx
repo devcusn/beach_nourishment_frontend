@@ -17,29 +17,27 @@ ChartJS.register(
   Legend
 );
 import { Line } from "react-chartjs-2";
+import { arange } from "../../utils/arange";
 
 const LineChart: React.FunctionComponent<{
   data: Array<Array<number>>;
-  data2: Array<Array<number>>;
-}> = ({ data, data2 }) => {
-  const x = data.map((m) => m[0]);
-  const y = data.map((m) => m[1]);
-  const x2 = data2.map((m) => m[0]);
-  const y2 = data2.map((m) => m[1]);
+  beach_length: number;
+}> = ({ data, beach_length = 20 }) => {
+  console.log(beach_length);
   const datas = {
-    labels: x,
+    labels: arange(data.length + beach_length),
     datasets: [
       {
-        label: "Second dataset",
-        data: y,
+        label: "From Coast",
+        data: data.map((m) => [m[0] + beach_length, m[1]]),
         fill: false,
-        borderColor: "#742774",
+        borderColor: "blue",
       },
       {
-        label: "Second dataset",
-        data: y2,
+        label: "From Beach",
+        data: data.map((m) => [m[0], m[1]]),
         fill: false,
-        borderColor: "#742774",
+        borderColor: "red",
       },
     ],
   };
