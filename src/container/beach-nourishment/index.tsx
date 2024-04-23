@@ -59,7 +59,7 @@ const BeachNourishmentPage = () => {
       <div className={classes.layout}>
         <div className={classes.layout_left}>
           <form onSubmit={formHandle} className={classes.inputs}>
-            <span>Coast</span>
+            <span className={classes.big_label}>Coast</span>
             <div>
               <span className={classes.label}>Total Lenght(m)</span>
               <input
@@ -88,7 +88,7 @@ const BeachNourishmentPage = () => {
                 placeholder="revetment depth(m)"
               />
             </div>
-            <span>Wave Properties</span>
+            <span className={classes.big_label}>Wave Properties</span>
             <div>
               <span className={classes.label}>Wave Height(m):</span>
               <input
@@ -107,7 +107,7 @@ const BeachNourishmentPage = () => {
               />
             </div>
 
-            <span>Soil Properties</span>
+            <span className={classes.big_label}>Soil Properties</span>
             <div>
               <span className={classes.label}>D:</span>
               <input defaultValue={1} name="D" placeholder="Add  D" />
