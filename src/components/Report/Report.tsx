@@ -49,18 +49,6 @@ const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
             <span>Beach Length(m):</span>
             <span>{project.beach_length}</span>
           </div>
-          <div>
-            <span>A:</span>
-            <span>{project.A}</span>
-          </div>
-          <div>
-            <span>A:</span>
-            <span>{project.A}</span>
-          </div>
-          <div>
-            <span>A:</span>
-            <span>{project.A}</span>
-          </div>
         </ReportSection>
         <ReportSection title={"Chart"}>
           <div

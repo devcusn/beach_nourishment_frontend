@@ -65,7 +65,7 @@ const BeachNourishmentPage = () => {
               <input
                 defaultValue={3}
                 name="totalLength"
-                placeholder="Total Lenght(m)"
+                placeholder="Total Length(m)"
               />
             </div>
             <div>
