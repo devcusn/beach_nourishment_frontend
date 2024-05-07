@@ -4,7 +4,25 @@ import { Line, OrbitControls, Text } from "@react-three/drei";
 import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
+
+const Grain = ({ z, length, x }) => {
+  console.log("beach", length);
+  return (
+    <>
+      <mesh position={[length, 0, z]}>
+        <boxGeometry args={[x, 2, 6]} />
+        <meshBasicMaterial color={"black"} />
+      </mesh>
+      <mesh position={[x / 2 + length + 1, 0, z]}>
+        <boxGeometry args={[3, 2, 20]} />
+        <meshBasicMaterial color={"red"} />
+      </mesh>
+    </>
+  );
+};
+
 const BeachRevetment = ({ revetment, beach_length, coast_length }) => {
+  console.log(beach_length, coast_length);
   console.log("beach_length", beach_length);
   console.log("coast_length", coast_length);
   return (
@@ -128,6 +146,8 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
         beach_length={beach_length}
         coast_length={coast_length}
       />
+      <Grain z={-2} length={beach_length} x={x} />
+      <Grain z={coast_length + 2} length={beach_length} x={x} />
     </Canvas>
   );
 };

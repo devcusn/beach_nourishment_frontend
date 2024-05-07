@@ -51,6 +51,7 @@ const BeachNourishmentPage = () => {
     setData(data.data);
     setProject(data.data);
   };
+  console.log(data);
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>
