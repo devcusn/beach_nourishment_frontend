@@ -9,11 +9,13 @@ import { arange } from "../../utils/arange";
 import Report from "../../components/Report/Report";
 import useProjectStore from "../../store/projectStore";
 import LoaderNoPreview from "../../components/LoaderNoPreview";
+import { useNavigate } from "react-router-dom";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [toggleReport, setToggleReport] = useState(false);
+  const navigate = useNavigate();
   const setProject = useProjectStore((state) => state.setProject);
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
@@ -64,7 +66,7 @@ const BeachNourishmentPage = () => {
             <div>
               <span className={classes.label}>Total Lenght(m)</span>
               <input
-                defaultValue={3}
+                defaultValue={80}
                 name="totalLength"
                 placeholder="Total Length(m)"
               />
@@ -72,7 +74,7 @@ const BeachNourishmentPage = () => {
             <div>
               <span className={classes.label}>Length of the beach(m)</span>
               <input
-                defaultValue={3}
+                defaultValue={30}
                 name="lengthOfBeach"
                 placeholder="length of beach(m)"
               />
@@ -82,7 +84,7 @@ const BeachNourishmentPage = () => {
               <input defaultValue={60} name="erosion" placeholder="Erozion" />
             </div>
             <div>
-              <span className={classes.label}>Revetment Depth(m)</span>
+              <span className={classes.label}>Foot Depth(m)</span>
               <input
                 defaultValue={3}
                 name="revetment"
@@ -143,9 +145,7 @@ const BeachNourishmentPage = () => {
                 </div>
                 <div>A : {Number(data["A"]).toFixed(2)} </div>
                 <div>Volume : {Number(data["volume"]).toFixed(2)} m^3 </div>
-                <button onClick={() => setToggleReport(true)}>
-                  Open Report
-                </button>
+                <button onClick={() => navigate("/report")}>Open Report</button>
               </div>
               <div className={classes.chart}>
                 {

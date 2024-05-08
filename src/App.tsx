@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import BeachNourishment from "./container/beach-nourishment";
 import Home from "./container/home";
 import MapContainer from "./container/map";
+import ReportPage from "./container/report";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/beach-nourishment",
     element: <BeachNourishment />,
+  },
+  {
+    path: "/report",
+    element: <ReportPage />,
   },
 ]);
 function App() {

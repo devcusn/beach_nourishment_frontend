@@ -13,10 +13,6 @@ const Grain = ({ z, length, x }) => {
         <boxGeometry args={[x, 2, 6]} />
         <meshBasicMaterial color={"black"} />
       </mesh>
-      <mesh position={[x / 2 + length + 1, 0, z]}>
-        <boxGeometry args={[3, 2, 20]} />
-        <meshBasicMaterial color={"red"} />
-      </mesh>
     </>
   );
 };

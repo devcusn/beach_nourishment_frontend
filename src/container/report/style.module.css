@@ -1,0 +1,20 @@
+.header_pdf {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 24px;
+
+  border-bottom: 2px solid #cccccc;
+}
+.header_button {
+  padding: 12px 20px;
+  min-width: fit-content;
+}
+.pdf_title {
+  width: 100%;
+  font-size: 26px;
+  font-weight: bold;
+}
+.pdf_contaier {
+  background-color: #202020;
+}

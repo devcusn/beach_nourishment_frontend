@@ -8,7 +8,9 @@ import { ReportProps } from "./types";
 import Map from "../Map/Map";
 import KaTeX from "../Katex";
 import "katex/dist/katex.min.css";
-const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
+const ReportComponent: React.FunctionComponent<ReportProps> = ({
+  toggleReport,
+}) => {
   const { name, project } = useProjectStore();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -78,4 +80,4 @@ const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
     </div>
   );
 };
-export default Report;
+export default ReportComponent;
