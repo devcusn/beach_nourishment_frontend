@@ -18,6 +18,7 @@ const BeachNourishmentPage = () => {
   const [toggleReport, setToggleReport] = useState(false);
   const navigate = useNavigate();
   const setProject = useProjectStore((state) => state.setProject);
+  const weatherLocation = useProjectStore((state) => state.weatherLocation);
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -56,8 +57,8 @@ const BeachNourishmentPage = () => {
     setProject(data.data);
   };
   useEffect(() => {
-    getWeather(44.34, 10.99);
-  }, []);
+    getWeather(weatherLocation[0], weatherLocation[1]);
+  }, [weatherLocation]);
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>

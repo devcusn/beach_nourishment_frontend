@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -12,6 +12,8 @@ import {
 import calculateArea from "../../utils/area";
 import classes from "./style.module.css";
 import { useNavigate } from "react-router-dom";
+import { LatLngExpression } from "leaflet";
+import useProjectStore from "../../store/projectStore";
 
 const CreatePolygon = ({ isActive }) => {
   const [polygones, setpolygonesPoints] = useState([]);
@@ -46,6 +48,34 @@ const CreatePolyLine = ({ isActive }) => {
   );
 };
 
+const CreateMarker = ({ isActive }) => {
+  const setWeatherLocation = useProjectStore(
+    (state) => state.setWeatherLocation
+  );
+  const [position, setPosition] = useState<LatLngExpression>([1, 2]);
+  const map = useMapEvents({
+    click(e) {
+      if (isActive) {
+        setPosition([e.latlng.lat, e.latlng.lng]);
+        map.locate();
+      }
+    },
+  });
+
+  useEffect(() => {
+    setWeatherLocation(position);
+  }, [position, setWeatherLocation]);
+
+  return (
+    <Marker position={position}>
+      <Popup>
+        <div>Lat: {position[0]}</div>
+        <div>Lon: {position[1]}</div>
+      </Popup>
+    </Marker>
+  );
+};
+
 const Map = ({ height }) => {
   const navigate = useNavigate();
   const position = [40.9, 38.39];
@@ -53,6 +83,12 @@ const Map = ({ height }) => {
   return (
     <div style={{ width: "100%", height: height }}>
       <div className={classes.map_actions}>
+        <button
+          className={classes.feat_btn}
+          onClick={() => setFeat("weather_location")}
+        >
+          Select coordinates for wind data
+        </button>
         <button
           className={classes.feat_btn}
           onClick={() => setFeat("polyline")}
@@ -83,6 +119,7 @@ const Map = ({ height }) => {
         </Marker>
         <CreatePolyLine isActive={feat === "polyline"} />
         <CreatePolygon isActive={feat === "polygone"} />
+        <CreateMarker isActive={feat === "weather_location"} />
       </MapContainer>
     </div>
   );
