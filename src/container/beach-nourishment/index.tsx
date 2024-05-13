@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import BeachScene from "./BeachScene";
 import classes from "./style.module.css";
 import LineChart from "./Chart";
@@ -11,6 +11,7 @@ import useProjectStore from "../../store/projectStore";
 import LoaderNoPreview from "../../components/LoaderNoPreview";
 import { useNavigate } from "react-router-dom";
 import { getWeather } from "../../services/endpoints";
+import Weather from "./Weather";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
@@ -18,6 +19,7 @@ const BeachNourishmentPage = () => {
   const [toggleReport, setToggleReport] = useState(false);
   const navigate = useNavigate();
   const setProject = useProjectStore((state) => state.setProject);
+  const setWeather = useProjectStore((state) => state.setWeather);
   const weatherLocation = useProjectStore((state) => state.weatherLocation);
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
@@ -56,9 +58,15 @@ const BeachNourishmentPage = () => {
     setData(data.data);
     setProject(data.data);
   };
+  const handleGetWeatherData = useCallback(async () => {
+    const res = await getWeather(weatherLocation[0], weatherLocation[1]);
+    setWeather(res);
+  }, [setWeather, weatherLocation]);
+
   useEffect(() => {
-    getWeather(weatherLocation[0], weatherLocation[1]);
-  }, [weatherLocation]);
+    handleGetWeatherData();
+  }, [handleGetWeatherData]);
+
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>
@@ -66,6 +74,7 @@ const BeachNourishmentPage = () => {
       </div>
       <div className={classes.layout}>
         <div className={classes.layout_left}>
+          <Weather />
           <form onSubmit={formHandle} className={classes.inputs}>
             <span className={classes.big_label}>Coast</span>
             <div>
