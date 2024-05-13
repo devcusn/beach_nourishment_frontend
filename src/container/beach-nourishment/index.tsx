@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import BeachScene from "./BeachScene";
 import classes from "./style.module.css";
 import LineChart from "./Chart";
@@ -10,6 +10,7 @@ import Report from "../../components/Report/Report";
 import useProjectStore from "../../store/projectStore";
 import LoaderNoPreview from "../../components/LoaderNoPreview";
 import { useNavigate } from "react-router-dom";
+import { getWeather } from "../../services/endpoints";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
@@ -30,6 +31,7 @@ const BeachNourishmentPage = () => {
       lengthOfBeach,
       revetment,
     } = e.target;
+
     const values = {
       wave_height: wave_height.value,
       wave_period: wave_period.value,
@@ -53,7 +55,9 @@ const BeachNourishmentPage = () => {
     setData(data.data);
     setProject(data.data);
   };
-  console.log(data);
+  useEffect(() => {
+    getWeather(44.34, 10.99);
+  }, []);
   return (
     <>
       <div style={{ padding: "20px", boxShadow: "0 0 4px 1px #dddddd" }}>
