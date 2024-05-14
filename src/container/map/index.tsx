@@ -12,8 +12,8 @@ const MapContainer = () => {
         <div style={{ width: "100%" }}>
           <Stepper
             steps={[
-              { label: "Select Weather Location", id: 1 },
-              { label: "Select Coord", id: 2 },
+              { label: "Select Coord", id: 1 },
+              { label: "Select Weather Location", id: 2 },
               { label: "Determine the beach shore", id: 3 },
             ]}
             onChange={setSelectedStep}
