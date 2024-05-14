@@ -1,0 +1,43 @@
+.stepper_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 12px;
+  font-size: 12px;
+  background-color: #fdfdfd;
+}
+.id {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 4px;
+  background-color: rgb(71, 71, 248);
+  width: 25px;
+  height: 25px;
+  color: #ffffff;
+}
+.stepper_btn {
+  height: fit-content;
+  padding: 8px 12px;
+  background-color: #dddddd;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.stepper_btn:hover {
+  height: fit-content;
+  padding: 8px 12px;
+  background-color: #cccccc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

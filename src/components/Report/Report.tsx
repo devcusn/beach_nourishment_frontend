@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import LineChart from "../../container/beach-nourishment/Chart";
 import useProjectStore from "../../store/projectStore";
 import { arange } from "../../utils/arange";
@@ -13,7 +13,6 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
 }) => {
   const { name, project } = useProjectStore();
   const ref = useRef<HTMLDivElement>(null);
-
   return (
     <div className={classes.report_container} onClick={toggleReport}>
       <div
