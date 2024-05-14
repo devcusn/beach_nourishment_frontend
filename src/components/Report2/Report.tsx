@@ -66,14 +66,8 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
           </div>
         </ReportSection>
         <ReportSection title={"Location"}>
-          <div
-            style={{
-              display: "flex",
-              height: "200px",
-              justifyContent: "center",
-            }}
-          >
-            <Map height={"400px"} />
+          <div style={{ height: "550px" }}>
+            <Map height={"500px"} />
           </div>
         </ReportSection>
       </div>

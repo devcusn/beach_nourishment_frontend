@@ -3,18 +3,23 @@
   align-items: center;
   justify-content: flex-end;
   padding: 8px 24px;
-
-  border-bottom: 2px solid #cccccc;
+  background-color: #ffffff;
 }
 .header_button {
   padding: 12px 20px;
   min-width: fit-content;
+  background-color: #fafafa;
+  border: 1px #cccccc solid;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
 }
 .pdf_title {
   width: 100%;
   font-size: 26px;
   font-weight: bold;
 }
-.pdf_contaier {
-  background-color: #202020;
+.pdf_container {
+  background-color: #e6e4e4;
+  height: 100%;
 }

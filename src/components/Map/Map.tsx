@@ -14,6 +14,7 @@ import classes from "./style.module.css";
 import { useNavigate } from "react-router-dom";
 import { LatLngExpression } from "leaflet";
 import useProjectStore from "../../store/projectStore";
+import { polylineDistance } from "../../utils/haversineDistance";
 
 const CreatePolygon = ({ isActive }) => {
   const [polygones, setpolygonesPoints] = useState([]);
@@ -42,7 +43,8 @@ const CreatePolyLine = ({ isActive }) => {
       }
     },
   });
-
+  const totalLength = polylineDistance(polygones);
+  console.log("totallength", totalLength);
   return polygones === null ? null : (
     <Polyline pathOptions={{ color: "red" }} positions={polygones} />
   );
