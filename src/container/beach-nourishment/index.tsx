@@ -74,11 +74,10 @@ const BeachNourishmentPage = () => {
       </div>
       <div className={classes.layout}>
         <div className={classes.layout_left}>
-          <Weather />
           <form onSubmit={formHandle} className={classes.inputs}>
             <span className={classes.big_label}>Coast</span>
             <div>
-              <span className={classes.label}>Total Lenght(m)</span>
+              <span className={classes.label}>Total Length(m)</span>
               <input
                 defaultValue={80}
                 name="totalLength"
@@ -98,7 +97,7 @@ const BeachNourishmentPage = () => {
               <input defaultValue={60} name="erosion" placeholder="Erozion" />
             </div>
             <div>
-              <span className={classes.label}>Foot Depth(m)</span>
+              <span className={classes.label}>Sill Depth(m)</span>
               <input
                 defaultValue={3}
                 name="revetment"
@@ -147,6 +146,7 @@ const BeachNourishmentPage = () => {
               </button>
             </div>
           </form>
+          <Weather />
           {data && (
             <>
               <div className={classes.reports}>

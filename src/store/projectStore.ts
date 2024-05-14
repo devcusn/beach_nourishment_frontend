@@ -2,7 +2,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { WeatherModel } from "../models/types";
-
+type BeachModel = {
+  coords: Array<Array<number>>;
+  totalLength: number;
+};
 interface ProjectState {
   name: string;
   project: {
@@ -13,11 +16,13 @@ interface ProjectState {
   projectLocation: Array<number>;
   weatherLocation: Array<number>;
   weather: WeatherModel;
+  beachData: BeachModel;
   updateProjectName: (name: string) => void;
   setProject: (project: object) => void;
   setWeatherLocation: (location: Array<number>) => void;
   setProjectLocation: (location: Array<number>) => void;
   setWeather: (weather: WeatherModel) => void;
+  setBeachData: (beachData: BeachModel) => void;
 }
 
 const useProjectStore = create<ProjectState>()(
@@ -34,7 +39,7 @@ const useProjectStore = create<ProjectState>()(
         set(() => ({ weatherLocation: location })),
       setWeather: (weather: WeatherModel) => set(() => ({ weather: weather })),
       setProjectLocation: (location: Array<number>) =>
-        set(() => ({ weatherLocation: location })),
+        set(() => ({ projectLocation: location })),
     }),
     { name: "projectStore" }
   )
