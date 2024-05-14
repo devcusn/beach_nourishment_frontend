@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import ReportComponent from "../../components/Report2/Report";
+import ReportComponent from "../../components/Report/Report";
 import classes from "./style.module.css";
 
 const ReportPage = () => {
@@ -7,6 +7,7 @@ const ReportPage = () => {
   const downloadnPDFHandler = () => {
     ref.current?.style.setProperty("display", "none");
     print();
+    ref.current?.style.setProperty("display", "flex");
   };
   return (
     <div className={classes.pdf_container}>

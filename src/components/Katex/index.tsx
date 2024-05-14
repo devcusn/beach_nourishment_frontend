@@ -10,7 +10,7 @@ const KaTeX = ({ texExpression }: { texExpression: string }) => {
     }
   }, [texExpression]);
 
-  return <div style={{ fontSize: "24px" }} ref={containerRef} />;
+  return <div style={{ fontSize: "18px" }} ref={containerRef} />;
 };
 
 export default KaTeX;

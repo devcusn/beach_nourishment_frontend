@@ -8,7 +8,9 @@ import { ReportProps } from "./types";
 import Map from "../Map/Map";
 import KaTeX from "../Katex";
 import "katex/dist/katex.min.css";
-const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
+const ReportComponent: React.FunctionComponent<ReportProps> = ({
+  toggleReport,
+}) => {
   const { name, project } = useProjectStore();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -20,6 +22,33 @@ const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
         className={classes.report}
       >
         <h2 className={classes.project_name}>{name}</h2>
+        <hr />
+
+        <ReportSection title={"Description"}>
+          <div
+            style={{
+              height: "fit-content",
+              justifyContent: "center",
+            }}
+          >
+            it is a beach nourishment project that will be realized in Giresun
+            at 41.21, 32.40. The total length of this beach is 270 meters, the
+            beach length is 90 meters. The project cost is also 12342.123
+            dollars.
+          </div>
+        </ReportSection>
+
+        <ReportSection title={"Location"}>
+          <div
+            style={{
+              height: "fit-content",
+              justifyContent: "center",
+            }}
+          >
+            <div>Total Coast Length</div>
+            <div>Total Distance</div>
+          </div>
+        </ReportSection>
         <ReportSection title={"Formulas"}>
           <div
             style={{
@@ -64,18 +93,12 @@ const Report: React.FunctionComponent<ReportProps> = ({ toggleReport }) => {
           </div>
         </ReportSection>
         <ReportSection title={"Location"}>
-          <div
-            style={{
-              display: "flex",
-              height: "200px",
-              justifyContent: "center",
-            }}
-          >
-            <Map height={"400px"} />
+          <div style={{ height: "550px" }}>
+            <Map height={"500px"} />
           </div>
         </ReportSection>
       </div>
     </div>
   );
 };
-export default Report;
+export default ReportComponent;

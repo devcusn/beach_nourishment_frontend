@@ -44,7 +44,6 @@ const CreatePolyLine = ({ isActive }) => {
     },
   });
   const totalLength = polylineDistance(polygones);
-  console.log("totallength", totalLength);
   return polygones === null ? null : (
     <Polyline pathOptions={{ color: "red" }} positions={polygones} />
   );
