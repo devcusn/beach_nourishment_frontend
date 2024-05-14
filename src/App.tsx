@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <MapContainer />,
   },
   {
-    path: "/beach-nourishment",
+    path: "/analysis",
     element: <BeachNourishment />,
   },
   {

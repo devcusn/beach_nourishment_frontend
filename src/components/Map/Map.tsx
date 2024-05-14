@@ -77,37 +77,10 @@ const CreateMarker = ({ isActive }) => {
   );
 };
 
-const Map = ({ height }) => {
-  const navigate = useNavigate();
+const Map = ({ height, feature }) => {
   const position = [40.9, 38.39];
-  const [feat, setFeat] = useState("");
   return (
     <div style={{ width: "100%", height: height }}>
-      <div className={classes.map_actions}>
-        <button
-          className={classes.feat_btn}
-          onClick={() => setFeat("weather_location")}
-        >
-          Select coordinates for wind data
-        </button>
-        <button
-          className={classes.feat_btn}
-          onClick={() => setFeat("polyline")}
-        >
-          Create PolyLine
-        </button>
-        <button
-          className={classes.feat_btn}
-          onClick={() => setFeat("polygone")}
-        >
-          Create Polygone
-        </button>
-        <div className={classes.menu_second}>
-          <button onClick={() => navigate("/beach-nourishment")}>
-            Next Step
-          </button>
-        </div>
-      </div>
       <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -118,9 +91,9 @@ const Map = ({ height }) => {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker>
-        <CreatePolyLine isActive={feat === "polyline"} />
-        <CreatePolygon isActive={feat === "polygone"} />
-        <CreateMarker isActive={feat === "weather_location"} />
+        <CreateMarker isActive={feature === 1} />
+        <CreatePolyLine isActive={feature === 3} />
+        {/* <CreatePolygon isActive={feat === "polygone"} /> */}
       </MapContainer>
     </div>
   );

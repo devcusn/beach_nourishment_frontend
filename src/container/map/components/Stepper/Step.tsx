@@ -1,11 +1,18 @@
 import classes from "./style.module.css";
 import { StepProps } from "./types";
 
-const Step: React.FunctionComponent<StepProps> = ({ label, id, isEnd }) => {
+const Step: React.FunctionComponent<StepProps> = ({
+  label,
+  id,
+  isEnd,
+  isSelected,
+}) => {
   return (
     <>
       <div className={classes.step}>
-        <span className={classes.id}>{id}</span>
+        <span className={isSelected ? classes.selected_id : classes.id}>
+          {id}
+        </span>
         {label}
       </div>
       {!isEnd && (
