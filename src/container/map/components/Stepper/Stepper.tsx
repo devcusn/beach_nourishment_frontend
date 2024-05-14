@@ -1,10 +1,12 @@
 import Step from "./Step";
 import { StepperProps } from "./types";
 import classes from "./style.module.css";
-const Stepper: React.FunctionComponent<StepperProps> = ({ steps, onclick }) => {
+const Stepper: React.FunctionComponent<StepperProps> = ({ steps, onClick }) => {
   return (
     <div className={classes.stepper_container}>
-      <button className={classes.stepper_btn}>back</button>
+      <button onClick={onClick} className={classes.stepper_btn}>
+        back
+      </button>
       {steps.map((step, index) => (
         <Step
           label={step.label}
@@ -12,7 +14,9 @@ const Stepper: React.FunctionComponent<StepperProps> = ({ steps, onclick }) => {
           isEnd={steps.length === index + 1}
         />
       ))}
-      <button className={classes.stepper_btn}>Next</button>
+      <button onClick={onClick} className={classes.stepper_btn}>
+        Next
+      </button>
     </div>
   );
 };
