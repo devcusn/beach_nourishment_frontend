@@ -54,7 +54,7 @@ const MapContainer = () => {
             <div>
               <h4>Coast Data</h4>
             </div>
-          )}
+          )}{" "}
         </div>
       </div>
     </div>
