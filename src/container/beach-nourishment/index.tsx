@@ -182,7 +182,6 @@ const BeachNourishmentPage = () => {
               noPreview={!loading && !data}
             />
           )}
-
           {data && (
             <BeachScene
               A={data["A"]}

@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Line, OrbitControls, Text } from "@react-three/drei";
+import { Line, OrbitControls } from "@react-three/drei";
 import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
+import classes from "./style.module.css";
 
 const Grain = ({ z, length, x }) => {
   console.log("beach", length);
@@ -108,43 +109,71 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
 }) => {
   const water = matris.filter((m) => m[3] === "blue");
   const soil = matris.filter((m) => m[3] === "orange");
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [selectedScreen, setSelectedScreen] = useState(0);
+  const fullScreenHandler = (t) => {
+    setSelectedScreen(selectedScreen === 0 ? 1 : 0);
+  };
+  useEffect(() => {
+    if (ref.current) {
+      if (selectedScreen === 1) {
+        ref.current.className = classes.fullScreen;
+
+        return;
+      }
+      ref.current.className = classes.normal;
+    }
+  }, [selectedScreen, ref]);
   return (
-    <Canvas
-      style={{ backgroundColor: "#f0f0f0", height: "100%" }}
-      camera={{ fov: 50, near: 1, far: 100000000, position: [25, 25, 50] }}
-    >
-      <ambientLight intensity={Math.PI / 2} />
-      <spotLight
-        position={[10, 10, 10]}
-        angle={0.15}
-        penumbra={1}
-        decay={0}
-        intensity={Math.PI}
-      />
-      <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
-      <OrbitControls />
-      <gridHelper
-        args={[matris.length / 10, matris.length / 10, "red", "teal"]}
-      />
-      <Line
-        points={arange(x).map((m) => [
-          m - x / 2 + beach_length,
-          -A * Math.pow(m, 2 / 3) - y,
-          coast_length,
-        ])}
-        color="red"
-        lineWidth={5}
-      />
-      <BeachWater matris={water} x={x} />
-      <BeachSoil matris={soil} x={x} />
-      <BeachRevetment
-        revetment={revetment}
-        beach_length={beach_length}
-        coast_length={coast_length}
-      />
-      <Grain z={-2} length={beach_length} x={x} />
-      <Grain z={coast_length + 2} length={beach_length} x={x} />
-    </Canvas>
+    <div ref={ref} style={{ width: "100%", height: "100%" }}>
+      {selectedScreen === 1 && (
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button onClick={() => fullScreenHandler(0)}>
+            Exit From Fullscreen
+          </button>
+        </div>
+      )}
+
+      <Canvas
+        style={{ backgroundColor: "#f0f0f0", height: "100%" }}
+        camera={{ fov: 50, near: 1, far: 100000000, position: [200, 200, 20] }}
+      >
+        <ambientLight intensity={Math.PI / 2} />
+        <spotLight
+          position={[10, 10, 10]}
+          angle={0.15}
+          penumbra={1}
+          decay={0}
+          intensity={Math.PI}
+        />
+        <pointLight position={[-10, -10, -10]} decay={0} intensity={Math.PI} />
+        <OrbitControls />
+        <gridHelper
+          args={[matris.length / 10, matris.length / 10, "red", "teal"]}
+        />
+        <Line
+          points={arange(x).map((m) => [
+            m - x / 2 + beach_length,
+            -A * Math.pow(m, 2 / 3) - y,
+            coast_length,
+          ])}
+          color="red"
+          lineWidth={5}
+        />
+        <BeachWater matris={water} x={x} />
+        <BeachSoil matris={soil} x={x} />
+        <BeachRevetment
+          revetment={revetment}
+          beach_length={beach_length}
+          coast_length={coast_length}
+        />
+        <Grain z={-2} length={beach_length} x={x} />
+        <Grain z={coast_length + 2} length={beach_length} x={x} />
+      </Canvas>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <button onClick={() => fullScreenHandler(1)}>FullSceen</button>
+      </div>
+    </div>
   );
 };
 
