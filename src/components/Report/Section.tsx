@@ -6,10 +6,10 @@ const ReportSection: React.FunctionComponent<ReportSectionProps> = ({
   children,
 }) => {
   return (
-    <div className={classes.report_section}>
+    <>
       <div className={classes.report_section__title}>{title}</div>
       <div className={classes.report_section__content}>{children}</div>
-    </div>
+    </>
   );
 };
 
