@@ -5,6 +5,7 @@ import { BeachSceneProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
 import classes from "./style.module.css";
+import useToggle from "../../hooks/useToggle";
 
 const Grain = ({ z, length, x }) => {
   console.log("beach", length);
@@ -111,6 +112,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   const soil = matris.filter((m) => m[3] === "orange");
   const ref = useRef<HTMLDivElement | null>(null);
   const [selectedScreen, setSelectedScreen] = useState(0);
+
   const fullScreenHandler = (t) => {
     setSelectedScreen(selectedScreen === 0 ? 1 : 0);
   };
@@ -124,13 +126,36 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       ref.current.className = classes.normal;
     }
   }, [selectedScreen, ref]);
+  const [tWater, toggleWater] = useToggle(true);
+  const [tSoil, toggleSoil] = useToggle(true);
+  const [tRevetment, toggleRevetment] = useToggle(true);
+  const [tGrain, toggleGrain] = useToggle(true);
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
       {selectedScreen === 1 && (
-        <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <button onClick={() => fullScreenHandler(0)}>
-            Exit From Fullscreen
-          </button>
+        <div style={{ padding: "20px", backgroundColor: "#ffffff" }}>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              className={classes.btn}
+              onClick={() => fullScreenHandler(0)}
+            >
+              Exit From Fullscreen
+            </button>
+          </div>
+          <div>
+            <button onClick={toggleWater} className={classes.btn}>
+              Toggle Water
+            </button>
+            <button onClick={toggleSoil} className={classes.btn}>
+              Toggle Soil
+            </button>
+            <button onClick={toggleRevetment} className={classes.btn}>
+              Toggle Revetment
+            </button>
+            <button onClick={toggleGrain} className={classes.btn}>
+              Toggle Grain
+            </button>
+          </div>
         </div>
       )}
 
@@ -160,15 +185,22 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
           color="red"
           lineWidth={5}
         />
-        <BeachWater matris={water} x={x} />
-        <BeachSoil matris={soil} x={x} />
-        <BeachRevetment
-          revetment={revetment}
-          beach_length={beach_length}
-          coast_length={coast_length}
-        />
-        <Grain z={-2} length={beach_length} x={x} />
-        <Grain z={coast_length + 2} length={beach_length} x={x} />
+        {tWater && <BeachWater matris={water} x={x} />}
+        {tSoil && <BeachSoil matris={soil} x={x} />}
+        {tRevetment && (
+          <BeachRevetment
+            revetment={revetment}
+            beach_length={beach_length}
+            coast_length={coast_length}
+          />
+        )}
+
+        {tGrain && (
+          <>
+            <Grain z={-2} length={beach_length} x={x} />
+            <Grain z={coast_length + 2} length={beach_length} x={x} />
+          </>
+        )}
       </Canvas>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <button onClick={() => fullScreenHandler(1)}>FullSceen</button>
