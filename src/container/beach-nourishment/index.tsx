@@ -115,30 +115,34 @@ const BeachNourishmentPage = () => {
             </div>
 
             <div>
-              <span className={classes.label}>Wave Period:</span>
+              <span className={classes.label}>Wave Period(s):</span>
               <input
                 defaultValue={8}
                 name="wave_period"
-                placeholder="Add wave Period"
+                placeholder="Add wave Period(s)"
               />
             </div>
 
             <span className={classes.big_label}>Soil Properties</span>
             <div>
-              <span className={classes.label}>D:</span>
-              <input defaultValue={1} name="D" placeholder="Add  D" />
+              <span className={classes.label}>D(mm):</span>
+              <input defaultValue={1} name="D" placeholder="Add  D(mm)" />
             </div>
             <div>
-              <span className={classes.label}>D50:</span>
+              <span className={classes.label}>D50(mm):</span>
               <input
                 defaultValue={1}
                 name="dfifthy"
-                placeholder="Add  dfifthy"
+                placeholder="Add  dfifthy (mm)"
               />
             </div>
             <div>
-              <span className={classes.label}>RHO:</span>
-              <input defaultValue={1} name="rho" placeholder="Add rho" />
+              <span className={classes.label}>RHO (kg/m^3):</span>
+              <input
+                defaultValue={1}
+                name="rho"
+                placeholder="Add rho ( kg/m^3)"
+              />
             </div>
             <div className={classes.actions}>
               <button className={classes.btn} type="submit">
