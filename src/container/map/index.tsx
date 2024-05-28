@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import useProjectStore from "../../store/projectStore";
 import { getWeather } from "../../services/endpoints";
 import Weather from "../beach-nourishment/Weather";
+import { polylineDistance } from "../../utils/haversineDistance";
 const MapContainer = () => {
-  const { projectLocation, weatherLocation, setWeather } = useProjectStore();
+  const { projectLocation, weatherLocation, setWeather, shoreCoordinates } =
+    useProjectStore();
   const [selectedStep, setSelectedStep] = useState(0);
   const navigate = useNavigate();
 
@@ -53,8 +55,11 @@ const MapContainer = () => {
           {selectedStep === 3 && (
             <div>
               <h4>Coast Data</h4>
+              <div>
+                Total Length:{polylineDistance(shoreCoordinates).toFixed(2)} m
+              </div>
             </div>
-          )}{" "}
+          )}
         </div>
       </div>
     </div>

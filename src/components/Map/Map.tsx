@@ -44,7 +44,12 @@ const CreatePolyLine = ({ isActive }) => {
       }
     },
   });
-  const totalLength = polylineDistance(polygones);
+  const setShoreCoordinates = useProjectStore(
+    (state) => state.setShoreCoordinates
+  );
+  useEffect(() => {
+    setShoreCoordinates(polygones);
+  }, [polygones, setShoreCoordinates]);
   return polygones === null ? null : (
     <Polyline pathOptions={{ color: "red" }} positions={polygones} />
   );
