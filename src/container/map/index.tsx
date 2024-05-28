@@ -4,7 +4,7 @@ import Stepper from "./components/Stepper/Stepper";
 import { useNavigate } from "react-router-dom";
 import useProjectStore from "../../store/projectStore";
 import { getWeather } from "../../services/endpoints";
-import Weather from "../beach-nourishment/Weather";
+import Weather from "../beach-nourishment/components/Weather/Weather";
 import { polylineDistance } from "../../utils/haversineDistance";
 const MapContainer = () => {
   const { projectLocation, weatherLocation, setWeather, shoreCoordinates } =

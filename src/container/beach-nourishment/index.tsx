@@ -11,8 +11,7 @@ import useProjectStore from "../../store/projectStore";
 import LoaderNoPreview from "../../components/LoaderNoPreview";
 import { useNavigate } from "react-router-dom";
 import { getWeather } from "../../services/endpoints";
-import Weather from "./Weather";
-import TwoDimensionCoast from "./TwoDimensionCoast";
+import Weather from "./components/Weather/Weather";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);

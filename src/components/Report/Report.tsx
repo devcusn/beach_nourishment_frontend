@@ -10,6 +10,7 @@ import KaTeX from "../Katex";
 import "katex/dist/katex.min.css";
 import BeachScene from "../../container/beach-nourishment/BeachScene";
 import ReportSinglePage from "./ReportSinglePage";
+import Weather from "../../container/beach-nourishment/components/Weather/Weather";
 
 const ReportComponent: React.FunctionComponent<ReportProps> = ({
   toggleReport,
@@ -88,12 +89,15 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
           </ReportSection>
         </ReportSinglePage>
         <ReportSinglePage>
+          <Weather />
+        </ReportSinglePage>
+        <ReportSinglePage>
           <ReportSection title={"Cross section A - A "}>
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-                height: "300px",
+                height: "275px",
               }}
             >
               <LineChart
@@ -110,7 +114,7 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
               style={{
                 display: "flex",
                 justifyContent: "center",
-                height: "300px",
+                height: "275px",
               }}
             >
               <LineChart
@@ -122,14 +126,12 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
               />
             </div>
           </ReportSection>
-        </ReportSinglePage>
-        <ReportSinglePage>
           <ReportSection title={"Cross section C - C "}>
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
-                height: "300px",
+                height: "275px",
               }}
             >
               <LineChart
