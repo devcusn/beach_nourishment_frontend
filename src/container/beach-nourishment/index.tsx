@@ -75,10 +75,13 @@ const BeachNourishmentPage = () => {
       <div className={classes.layout}>
         <div className={classes.layout_left}>
           <form onSubmit={formHandle} className={classes.inputs}>
+            <h2>Coast & Wave & Soil</h2>
+            <hr />
             <span className={classes.big_label}>Coast</span>
             <div>
               <span className={classes.label}>Total Length(m)</span>
               <input
+                className={classes.input}
                 defaultValue={80}
                 name="totalLength"
                 placeholder="Total Length(m)"
@@ -87,6 +90,7 @@ const BeachNourishmentPage = () => {
             <div>
               <span className={classes.label}>Length of the beach(m)</span>
               <input
+                className={classes.input}
                 defaultValue={30}
                 name="lengthOfBeach"
                 placeholder="length of beach(m)"
@@ -94,11 +98,17 @@ const BeachNourishmentPage = () => {
             </div>
             <div>
               <span className={classes.label}>Erosion %</span>
-              <input defaultValue={60} name="erosion" placeholder="Erozion" />
+              <input
+                className={classes.input}
+                defaultValue={60}
+                name="erosion"
+                placeholder="Erozion"
+              />
             </div>
             <div>
               <span className={classes.label}>Sill Depth(m)</span>
               <input
+                className={classes.input}
                 defaultValue={3}
                 name="revetment"
                 placeholder="revetment depth(m)"
@@ -108,6 +118,7 @@ const BeachNourishmentPage = () => {
             <div>
               <span className={classes.label}>Wave Height(m):</span>
               <input
+                className={classes.input}
                 defaultValue={2.5}
                 name="wave_height"
                 placeholder="Add wave height(m)"
@@ -117,6 +128,7 @@ const BeachNourishmentPage = () => {
             <div>
               <span className={classes.label}>Wave Period(s):</span>
               <input
+                className={classes.input}
                 defaultValue={8}
                 name="wave_period"
                 placeholder="Add wave Period(s)"
@@ -126,11 +138,17 @@ const BeachNourishmentPage = () => {
             <span className={classes.big_label}>Soil Properties</span>
             <div>
               <span className={classes.label}>D(mm):</span>
-              <input defaultValue={1} name="D" placeholder="Add  D(mm)" />
+              <input
+                className={classes.input}
+                defaultValue={1}
+                name="D"
+                placeholder="Add  D(mm)"
+              />
             </div>
             <div>
               <span className={classes.label}>D50(mm):</span>
               <input
+                className={classes.input}
                 defaultValue={1}
                 name="dfifthy"
                 placeholder="Add  dfifthy (mm)"
@@ -139,6 +157,7 @@ const BeachNourishmentPage = () => {
             <div>
               <span className={classes.label}>RHO (kg/m^3):</span>
               <input
+                className={classes.input}
                 defaultValue={1}
                 name="rho"
                 placeholder="Add rho ( kg/m^3)"

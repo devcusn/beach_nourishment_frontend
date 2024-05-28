@@ -4,9 +4,10 @@ import OutPut from "./OutPut";
 const Weather = () => {
   const weather = useProjectStore((state) => state.weather);
   return (
-    <>
+    <div style={{ padding: "20px 0px" }}>
+      <h2>Weather Data Resource</h2>
+      <hr />
       <table style={{ width: "100%", padding: "20px 0px" }}>
-        <h3>Weather Data Resource</h3>
         <OutPut label="Data Center" value={weather.base} />
         <h4>Wind Data</h4>
         <OutPut label="Wind Speed " value={`${weather.wind.speed} km/s`} />
@@ -25,7 +26,7 @@ const Weather = () => {
         <OutPut label="Sea Level" value={`${weather.main.sea_level}`} />
         <OutPut label="Grnd Level " value={`${weather.main.grnd_level}`} />
       </table>
-    </>
+    </div>
   );
 };
 export default Weather;
