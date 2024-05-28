@@ -12,6 +12,7 @@ import LoaderNoPreview from "../../components/LoaderNoPreview";
 import { useNavigate } from "react-router-dom";
 import { getWeather } from "../../services/endpoints";
 import Weather from "./Weather";
+import TwoDimensionCoast from "./TwoDimensionCoast";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
@@ -182,18 +183,22 @@ const BeachNourishmentPage = () => {
               noPreview={!loading && !data}
             />
           )}
-          {data && (
-            <BeachScene
-              A={data["A"]}
-              x={data["closure_depth_x"]}
-              z={data["total_length"]}
-              y={-1 * data["closure_depth"]}
-              matris={data["matris"]}
-              beach_length={data["beach_length"]}
-              coast_length={data["total_length"]}
-              revetment={data["revetment_position"]}
-            />
-          )}
+          <div style={{ height: "50%", width: "100%" }}>
+            {data && (
+              <BeachScene
+                A={data["A"]}
+                x={data["closure_depth_x"]}
+                z={data["total_length"]}
+                y={-1 * data["closure_depth"]}
+                matris={data["matris"]}
+                beach_length={data["beach_length"]}
+                coast_length={data["total_length"]}
+                revetment={data["revetment_position"]}
+              />
+            )}
+          </div>
+
+          {/* <TwoDimensionCoast /> */}
         </div>
       </div>
       {toggleReport && (

@@ -11,12 +11,11 @@
 
 .layout_right {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 50%;
   border-left: 1px black solid;
-  height: 50%;
+  height: 100%;
 }
 
 .btn {

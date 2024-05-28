@@ -130,6 +130,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   const [tSoil, toggleSoil] = useToggle(true);
   const [tRevetment, toggleRevetment] = useToggle(true);
   const [tGrain, toggleGrain] = useToggle(true);
+
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
       {selectedScreen === 1 && (
