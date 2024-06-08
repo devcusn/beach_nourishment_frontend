@@ -15,7 +15,8 @@ import Weather from "../../container/beach-nourishment/components/Weather/Weathe
 const ReportComponent: React.FunctionComponent<ReportProps> = ({
   toggleReport,
 }) => {
-  const { name, project, projectLocation, shoreLength } = useProjectStore();
+  const { name, project, projectLocation, shoreLength, beachLength } =
+    useProjectStore();
   const data = project;
   const ref = useRef<HTMLDivElement>(null);
   return (
@@ -38,10 +39,15 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
                 justifyContent: "center",
               }}
             >
-              it is a beach nourishment project that will be realized in Giresun
-              at {projectLocation[0]}, {projectLocation[1]}. The total length of
-              this beach is {shoreLength.toFixed(2)} meters, the beach length is
-              90 meters. The project cost is also 12342.123 dollars.
+              {` it is a beach nourishment project that will be realized in Giresun
+              at ${projectLocation[0]}, ${
+                projectLocation[1]
+              }. The total length of
+              this beach is ${shoreLength.toFixed(
+                2
+              )} meters, the beach length is
+              ${beachLength.toFixed(2)} meters. The project cost is also
+              12342.123 dollars.`}
             </div>
           </ReportSection>
           <ReportSection title={"Location"}>

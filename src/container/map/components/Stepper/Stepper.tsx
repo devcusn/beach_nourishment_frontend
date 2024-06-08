@@ -21,14 +21,16 @@ const Stepper: React.FunctionComponent<StepperProps> = ({
       >
         back
       </button>
-      {steps.map((step, index) => (
-        <Step
-          isSelected={step.id === selectedStep}
-          label={step.label}
-          id={step.id}
-          isEnd={steps.length === index + 1}
-        />
-      ))}
+      <div className={classes.stepper_steps}>
+        {steps.map((step, index) => (
+          <Step
+            isSelected={step.id === selectedStep}
+            label={step.label}
+            id={step.id}
+            isEnd={steps.length === index + 1}
+          />
+        ))}
+      </div>
       <button
         onClick={() => {
           if (selectedStep === steps.length) {

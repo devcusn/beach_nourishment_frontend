@@ -15,7 +15,8 @@ import {
 import { LatLngExpression, Icon } from "leaflet";
 import useProjectStore from "../../store/projectStore";
 import { polylineDistance } from "../../utils/haversineDistance";
-import LocationIcon from "../../assets/location-sign.svg";
+//import LocationIcon from "../../assets/location-sign.svg";
+import { MapFeatureProps } from "./types";
 
 // const CreatePolygon = ({ isActive }) => {
 //   const [polygones, setpolygonesPoints] = useState([]);
@@ -34,7 +35,9 @@ import LocationIcon from "../../assets/location-sign.svg";
 //   );
 // };
 
-const CreatePolyLine = ({ isActive }) => {
+const CreatePolyLine: React.FunctionComponent<MapFeatureProps> = ({
+  isActive,
+}) => {
   const [polygones, setpolygonesPoints] = useState([]);
 
   const map = useMapEvents({
@@ -52,14 +55,18 @@ const CreatePolyLine = ({ isActive }) => {
       setShoreCoordinates(polygones);
       setShoreLength(polylineDistance(polygones));
     }
-  }, [polygones, setShoreCoordinates, setShoreLength]);
+  }, [isActive, polygones, setShoreCoordinates, setShoreLength]);
 
   return polygones === null ? null : (
     <Polyline pathOptions={{ color: "red" }} positions={polygones} />
   );
 };
 
-const CreateMarker = ({ isActive }: { isActive: boolean }) => {
+const CreateMarker: React.FunctionComponent<MapFeatureProps> = ({
+  isActive,
+}: {
+  isActive: boolean;
+}) => {
   const setWeatherLocation = useProjectStore(
     (state) => state.setWeatherLocation
   );
@@ -89,7 +96,9 @@ const CreateMarker = ({ isActive }: { isActive: boolean }) => {
   );
 };
 
-const CreateLocationMarker = ({ isActive }) => {
+const CreateLocationMarker: React.FunctionComponent<MapFeatureProps> = ({
+  isActive,
+}) => {
   const { setProjectLocation, projectLocation } = useProjectStore();
   const map = useMapEvents({
     click(e) {
@@ -117,6 +126,30 @@ const CreateLocationMarker = ({ isActive }) => {
   );
 };
 
+const CreateLine = ({ isActive }) => {
+  const [polygones, setpolygonesPoints] = useState([]);
+
+  const map = useMapEvents({
+    click(e) {
+      if (isActive) {
+        setpolygonesPoints((prev) => [...prev, [e.latlng.lat, e.latlng.lng]]);
+        map.locate();
+      }
+    },
+  });
+  const { setBeachLength } = useProjectStore();
+
+  useEffect(() => {
+    if (isActive) {
+      setBeachLength(polylineDistance(polygones));
+    }
+  }, [isActive, polygones, setBeachLength]);
+
+  return polygones === null ? null : (
+    <Polyline pathOptions={{ color: "blue" }} positions={polygones} />
+  );
+};
+
 const Map = ({ height, feature }) => {
   const position = [41.00778, 38.81083];
   return (
@@ -129,6 +162,7 @@ const Map = ({ height, feature }) => {
         <CreateLocationMarker isActive={feature === 1} />
         <CreateMarker isActive={feature === 2} />
         <CreatePolyLine isActive={feature === 3} />
+        <CreateLine isActive={feature === 4} />
         {/* <CreatePolygon isActive={feat === "polygone"} /> */}
       </MapContainer>
     </div>

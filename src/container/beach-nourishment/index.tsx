@@ -18,7 +18,7 @@ const BeachNourishmentPage = () => {
   const [loading, setLoading] = useState(false);
   const [toggleReport, setToggleReport] = useState(false);
   const navigate = useNavigate();
-  const { weatherLocation, setWeather, setProject, shoreLength } =
+  const { weatherLocation, setWeather, setProject, shoreLength, beachLength } =
     useProjectStore();
 
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
@@ -83,7 +83,7 @@ const BeachNourishmentPage = () => {
               <span className={classes.label}>Total Length(m)</span>
               <input
                 className={classes.input}
-                defaultValue={shoreLength.toFixed(2)}
+                defaultValue={shoreLength.toFixed(0)}
                 name="totalLength"
                 placeholder="Total Length(m)"
               />
@@ -92,7 +92,7 @@ const BeachNourishmentPage = () => {
               <span className={classes.label}>Length of the beach(m)</span>
               <input
                 className={classes.input}
-                defaultValue={30}
+                defaultValue={beachLength.toFixed(0)}
                 name="lengthOfBeach"
                 placeholder="length of beach(m)"
               />

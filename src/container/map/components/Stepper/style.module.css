@@ -2,8 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 12px;
+  gap: 50px;
   padding: 8px;
+}
+.stepper_steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .step {
   display: flex;
