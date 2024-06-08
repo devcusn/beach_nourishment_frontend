@@ -12,7 +12,7 @@ import ReportSinglePage from "./ReportSinglePage";
 import Weather from "../../beach-nourishment/components/Weather/Weather";
 import ReportSection from "./Section";
 import EstimatedCost from "./Part/EstimetedCost";
-
+import GraphIMG from "../../../assets/graph.jpeg";
 const ReportComponent: React.FunctionComponent<ReportProps> = () => {
   const { name, project, projectLocation, shoreLength, beachLength } =
     useProjectStore();
@@ -101,7 +101,7 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                height: "275px",
+                height: "400px",
               }}
             >
               <LineChart
@@ -113,39 +113,34 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               />
             </div>
           </ReportSection>
-          <ReportSection title={"Cross section B - B "}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                height: "275px",
-              }}
-            >
-              <LineChart
-                data={arange(project["closure_depth_x"]).map((m) => [
-                  m,
-                  -1 * project["A"] * Math.pow(m, 2 / 3),
-                ])}
-                beach_length={project["beach_length"]}
-              />
-            </div>
-          </ReportSection>
-          <ReportSection title={"Cross section C - C "}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                height: "275px",
-              }}
-            >
-              <LineChart
-                data={arange(project["closure_depth_x"]).map((m) => [
-                  m,
-                  -1 * project["A"] * Math.pow(m, 2 / 3),
-                ])}
-                beach_length={project["beach_length"]}
-              />
-            </div>
+        </ReportSinglePage>
+        <ReportSinglePage>
+          <ReportSection title={"Chart "}>
+            <img src={GraphIMG} width="100%" />
+            <table className={classes.table}>
+              <thead>
+                <tr>
+                  <th></th>
+                  <th>C1(m2)</th>
+                  <th>C2(m2)</th>
+                  <th>C3(m2)</th>
+                  <th>C4(m2)</th>
+                  <th>Total area without sill (m2)</th>
+                  <th>Total area with sill (m2)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A-A</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10</td>
+                  <td>10</td>
+                </tr>
+              </tbody>
+            </table>
           </ReportSection>
         </ReportSinglePage>
         <ReportSinglePage>

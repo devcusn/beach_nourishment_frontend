@@ -34,3 +34,14 @@
   flex-direction: column;
   padding: 8px 0px;
 }
+
+.table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  width: 90%;
+  margin: auto;
+}
+.table td,
+.table th {
+  border: 1px solid black;
+}
