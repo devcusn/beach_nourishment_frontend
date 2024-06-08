@@ -6,7 +6,7 @@ import BeachScene from "./BeachScene";
 import classes from "./style.module.css";
 import LineChart from "./Chart";
 import { arange } from "../../utils/arange";
-import Report from "../../components/Report/Report";
+import Report from "../report/components/Report";
 import useProjectStore from "../../store/projectStore";
 import LoaderNoPreview from "../../components/LoaderNoPreview";
 import { useNavigate } from "react-router-dom";

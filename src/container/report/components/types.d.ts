@@ -1,6 +1,4 @@
-export type ReportProps = {
-  toggleReport: () => void;
-};
+export type ReportProps = {};
 
 export type ReportSectionProps = {
   title: string;

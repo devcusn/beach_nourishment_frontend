@@ -1,26 +1,25 @@
 import { useRef } from "react";
-import LineChart from "../../container/beach-nourishment/Chart";
-import useProjectStore from "../../store/projectStore";
-import { arange } from "../../utils/arange";
-import ReportSection from "./Section";
+import LineChart from "../../beach-nourishment/Chart";
+import useProjectStore from "../../../store/projectStore";
+import { arange } from "../../../utils/arange";
 import classes from "./style.module.css";
 import { ReportProps } from "./types";
-import Map from "../Map/Map";
-import KaTeX from "../Katex";
+import Map from "../../../components/Map/Map";
+import KaTeX from "../../../components/Katex";
 import "katex/dist/katex.min.css";
-import BeachScene from "../../container/beach-nourishment/BeachScene";
+import BeachScene from "../../beach-nourishment/BeachScene";
 import ReportSinglePage from "./ReportSinglePage";
-import Weather from "../../container/beach-nourishment/components/Weather/Weather";
+import Weather from "../../beach-nourishment/components/Weather/Weather";
+import ReportSection from "./Section";
+import EstimatedCost from "./Part/EstimetedCost";
 
-const ReportComponent: React.FunctionComponent<ReportProps> = ({
-  toggleReport,
-}) => {
+const ReportComponent: React.FunctionComponent<ReportProps> = () => {
   const { name, project, projectLocation, shoreLength, beachLength } =
     useProjectStore();
   const data = project;
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <div className={classes.report_container} onClick={toggleReport}>
+    <div className={classes.report_container}>
       <div
         ref={ref}
         onClick={(e) => e.stopPropagation()}
@@ -167,9 +166,7 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
             </div>
           </ReportSection>
           <ReportSection title={"Project Cost"}>
-            <div style={{}}>
-              <div>Tatal Project Cost = 500 * 1 = 500 USD</div>
-            </div>
+            <EstimatedCost />
           </ReportSection>
         </ReportSinglePage>
       </div>

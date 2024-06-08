@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import ReportComponent from "../../components/Report/Report";
+import ReportComponent from "./components/Report";
 import classes from "./style.module.css";
 
 const ReportPage = () => {
@@ -17,7 +17,7 @@ const ReportPage = () => {
           Download PDF
         </button>
       </div>
-      <ReportComponent toggleReport={() => {}} />
+      <ReportComponent />
     </div>
   );
 };
