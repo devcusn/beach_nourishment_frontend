@@ -18,11 +18,13 @@ interface ProjectState {
   weather: WeatherModel;
   beachData: BeachModel;
   shoreCoordinates: Array<Array<number>>;
+  shoreLength: number;
   setShoreCoordinates: (coordinates: Array<Array<number>>) => void;
   updateProjectName: (name: string) => void;
   setProject: (project: object) => void;
   setWeatherLocation: (location: Array<number>) => void;
   setProjectLocation: (location: Array<number>) => void;
+  setShoreLength: (l: number) => void;
   setWeather: (weather: WeatherModel) => void;
   setBeachData: (beachData: BeachModel) => void;
 }
@@ -30,6 +32,7 @@ interface ProjectState {
 const useProjectStore = create<ProjectState>()(
   persist(
     (set) => ({
+      shoreLength: 0,
       name: "",
       weatherLocation: [0, 0],
       project: { closure_depth_x: 0, A: 0, beach_length: 0 },
@@ -45,6 +48,7 @@ const useProjectStore = create<ProjectState>()(
         set(() => ({ projectLocation: location })),
       setShoreCoordinates: (coordinates: Array<number>) =>
         set(() => ({ shoreCoordinates: coordinates })),
+      setShoreLength: (l: number) => set(() => ({ shoreLength: l })),
     }),
     { name: "projectStore" }
   )

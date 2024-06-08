@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import LineChart from "../../container/beach-nourishment/Chart";
 import useProjectStore from "../../store/projectStore";
 import { arange } from "../../utils/arange";
@@ -15,10 +15,9 @@ import Weather from "../../container/beach-nourishment/components/Weather/Weathe
 const ReportComponent: React.FunctionComponent<ReportProps> = ({
   toggleReport,
 }) => {
-  const { name, project } = useProjectStore();
+  const { name, project, projectLocation, shoreLength } = useProjectStore();
   const data = project;
   const ref = useRef<HTMLDivElement>(null);
-
   return (
     <div className={classes.report_container} onClick={toggleReport}>
       <div
@@ -40,9 +39,9 @@ const ReportComponent: React.FunctionComponent<ReportProps> = ({
               }}
             >
               it is a beach nourishment project that will be realized in Giresun
-              at 41.21, 32.40. The total length of this beach is 270 meters, the
-              beach length is 90 meters. The project cost is also 12342.123
-              dollars.
+              at {projectLocation[0]}, {projectLocation[1]}. The total length of
+              this beach is {shoreLength.toFixed(2)} meters, the beach length is
+              90 meters. The project cost is also 12342.123 dollars.
             </div>
           </ReportSection>
           <ReportSection title={"Location"}>

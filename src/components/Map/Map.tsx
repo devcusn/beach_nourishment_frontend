@@ -36,6 +36,7 @@ import LocationIcon from "../../assets/location-sign.svg";
 
 const CreatePolyLine = ({ isActive }) => {
   const [polygones, setpolygonesPoints] = useState([]);
+
   const map = useMapEvents({
     click(e) {
       if (isActive) {
@@ -44,18 +45,21 @@ const CreatePolyLine = ({ isActive }) => {
       }
     },
   });
-  const setShoreCoordinates = useProjectStore(
-    (state) => state.setShoreCoordinates
-  );
+  const { setShoreCoordinates, setShoreLength } = useProjectStore();
+
   useEffect(() => {
-    setShoreCoordinates(polygones);
-  }, [polygones, setShoreCoordinates]);
+    if (isActive) {
+      setShoreCoordinates(polygones);
+      setShoreLength(polylineDistance(polygones));
+    }
+  }, [polygones, setShoreCoordinates, setShoreLength]);
+
   return polygones === null ? null : (
     <Polyline pathOptions={{ color: "red" }} positions={polygones} />
   );
 };
 
-const CreateMarker = ({ isActive }) => {
+const CreateMarker = ({ isActive }: { isActive: boolean }) => {
   const setWeatherLocation = useProjectStore(
     (state) => state.setWeatherLocation
   );
@@ -70,7 +74,9 @@ const CreateMarker = ({ isActive }) => {
   });
 
   useEffect(() => {
-    setWeatherLocation(position);
+    if (isActive) {
+      setWeatherLocation(position);
+    }
   }, [position, setWeatherLocation]);
 
   return (
@@ -84,21 +90,15 @@ const CreateMarker = ({ isActive }) => {
 };
 
 const CreateLocationMarker = ({ isActive }) => {
-  const setProjectLocation = useProjectStore(
-    (state) => state.setProjectLocation
-  );
-  const [position, setPosition] = useState<LatLngExpression>([1, 2]);
+  const { setProjectLocation, projectLocation } = useProjectStore();
   const map = useMapEvents({
     click(e) {
       if (isActive) {
-        setPosition([e.latlng.lat, e.latlng.lng]);
+        setProjectLocation([e.latlng.lat, e.latlng.lng]);
         map.locate();
       }
     },
   });
-  useEffect(() => {
-    setProjectLocation(position);
-  }, [position, setProjectLocation]);
 
   const location = new Icon({
     iconUrl: "https://www.svgrepo.com/show/127575/location-sign.svg",
@@ -107,18 +107,18 @@ const CreateLocationMarker = ({ isActive }) => {
   });
 
   return (
-    <Marker position={position} icon={location}>
+    <Marker position={projectLocation as LatLngExpression} icon={location}>
       <Popup>
         <div>Selected Coordinate:</div>
-        <div>Lat: {position[0]}</div>
-        <div>Lon: {position[1]}</div>
+        <div>Lat: {projectLocation[0]}</div>
+        <div>Lon: {projectLocation[1]}</div>
       </Popup>
     </Marker>
   );
 };
 
 const Map = ({ height, feature }) => {
-  const position = [40.9, 38.39];
+  const position = [41.00778, 38.81083];
   return (
     <div style={{ width: "100%", height: height }}>
       <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
