@@ -20,7 +20,6 @@ const BeachNourishmentPage = () => {
   const navigate = useNavigate();
   const { weatherLocation, setWeather, setProject, shoreLength, beachLength } =
     useProjectStore();
-  const [beachLengthInput, setBeachLengthInput] = useState(beachLength);
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -45,8 +44,7 @@ const BeachNourishmentPage = () => {
       length_of_beach: lengthOfBeach.value,
       revetment: revetment.value,
     };
-    console.log("length", lengthOfBeach.value);
-    console.log("total length", totalLength.value);
+
     const res = await fetch(`${import.meta.env.VITE_API}api/closure_depth`, {
       method: "POST",
       headers: {
@@ -112,7 +110,7 @@ const BeachNourishmentPage = () => {
               <span className={classes.label}>Sill Depth(m)</span>
               <input
                 className={classes.input}
-                defaultValue={3}
+                defaultValue={2.5}
                 name="revetment"
                 placeholder="revetment depth(m)"
               />
@@ -122,7 +120,7 @@ const BeachNourishmentPage = () => {
               <span className={classes.label}>Wave Height(m):</span>
               <input
                 className={classes.input}
-                defaultValue={2.5}
+                defaultValue={4}
                 name="wave_height"
                 placeholder="Add wave height(m)"
               />
@@ -143,7 +141,7 @@ const BeachNourishmentPage = () => {
               <span className={classes.label}>D(mm):</span>
               <input
                 className={classes.input}
-                defaultValue={1}
+                defaultValue={0.1}
                 name="D"
                 placeholder="Add  D(mm)"
               />

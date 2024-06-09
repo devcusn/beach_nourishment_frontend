@@ -159,7 +159,7 @@ const CreateLine: React.FunctionComponent<MapFeatureProps> = ({ isActive }) => {
 };
 
 const Map: React.FunctionComponent<MapProps> = ({ height, feature }) => {
-  const position = [41.00778, 38.81083];
+  const position = useProjectStore((state) => state.projectLocation);
   return (
     <div style={{ width: "100%", height: height }}>
       <MapContainer

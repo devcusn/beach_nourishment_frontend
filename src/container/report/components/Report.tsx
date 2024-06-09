@@ -72,8 +72,11 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
                 justifyContent: "center",
               }}
             >
-              <KaTeX texExpression="A=\frac{24 \times D \times dfifthy}{5 \times \rho \times \left( \frac{\text{self.gravity}^{3/2}}{\text{self.k}^2} \right)^{2/3}}" />
-              <KaTeX texExpression="\text{closure\ depth} = 2.28 \times h_s - 68.5 \times \frac{{h_s^2}}{{\text{gravity} \times t_m^2}}" />
+              <KaTeX texExpression="A = 2.25 \left( \frac{wf^2}{g} \right)^{\frac{1}{3}}" />
+              <KaTeX
+                texExpression="h_c = 2.28 \times h_s - 68.5 \times \frac{h_s^2}{\text{g} \times T_m^2}
+"
+              />
               <KaTeX texExpression="h = A \times y^{\frac{2}{3}}" />
             </div>
           </ReportSection>
@@ -132,12 +135,12 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               <tbody>
                 <tr>
                   <td>A-A</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
-                  <td>10</td>
+                  <td>{project.volume_detail.c1.toFixed(2)}</td>
+                  <td>{project.volume_detail.c2.toFixed(2)}</td>
+                  <td>{project.volume_detail.c3.toFixed(2)}</td>
+                  <td>{project.volume_detail.c4.toFixed(2)}</td>
+                  <td>{project.volume.toFixed(2) / 200}</td>
+                  <td>{project.volume_detail.c1.toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
