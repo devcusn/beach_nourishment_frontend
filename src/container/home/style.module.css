@@ -54,4 +54,8 @@
   padding: 4px;
   cursor: pointer;
   border-radius: 4px;
+  margin-bottom: 10px;
+}
+.location:hover {
+  background-color: orange;
 }

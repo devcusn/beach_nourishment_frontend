@@ -55,7 +55,7 @@ const Home = () => {
                 }}
                 className={classes.location}
               >
-                {l.display_name}
+                {l.display_name.slice(0, 50)}
               </div>
             );
           })}
