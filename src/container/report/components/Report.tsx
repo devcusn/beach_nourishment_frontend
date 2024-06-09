@@ -36,6 +36,7 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               style={{
                 height: "fit-content",
                 justifyContent: "center",
+                padding: "12px 0px",
               }}
             >
               {` it is a beach nourishment project that will be realized in Giresun
@@ -45,8 +46,7 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               this beach is ${shoreLength.toFixed(
                 2
               )} meters, the beach length is
-              ${beachLength.toFixed(2)} meters. The project cost is also
-              12342.123 dollars.`}
+              ${beachLength.toFixed(2)} meters.`}
             </div>
           </ReportSection>
           <ReportSection title={"Location"}>
@@ -54,21 +54,20 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               <Map height={"250px"} feature={0} />
             </div>
           </ReportSection>
-          <ReportSection title={"Location"}>
+          <ReportSection title={"Coast & Beach Data"}>
             <div
               style={{
                 height: "fit-content",
                 justifyContent: "center",
               }}
             >
-              <div>Total Coast Length</div>
-              <div>Total Distance</div>
+              <div>Coast Length(m): {shoreLength.toFixed(2)}</div>
+              <div>Beach Length(m): {beachLength.toFixed(2)}</div>
             </div>
           </ReportSection>
           <ReportSection title={"Formulas"}>
             <div
               style={{
-                height: "200px",
                 justifyContent: "center",
               }}
             >
@@ -82,16 +81,16 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
           </ReportSection>
           <ReportSection title="Project Datas">
             <div>
+              <span>Closure Depth(m):</span>
+              <span>{project.closure_depth.toFixed(2)}</span>
+            </div>
+            <div>
               <span>Closure Depth x(m):</span>
               <span>{project.closure_depth_x.toFixed(2)}</span>
             </div>
             <div>
               <span>A:</span>
-              <span>{project.A}</span>
-            </div>
-            <div>
-              <span>Beach Length(m):</span>
-              <span>{project.beach_length}</span>
+              <span>{project.A.toFixed(2)}</span>
             </div>
           </ReportSection>
         </ReportSinglePage>
@@ -118,18 +117,18 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
           </ReportSection>
         </ReportSinglePage>
         <ReportSinglePage>
-          <ReportSection title={"Chart "}>
+          <ReportSection title={"Area & Volume "}>
             <img src={GraphIMG} width="100%" />
             <table className={classes.table}>
               <thead>
                 <tr>
                   <th></th>
-                  <th>C1(m2)</th>
-                  <th>C2(m2)</th>
-                  <th>C3(m2)</th>
-                  <th>C4(m2)</th>
-                  <th>Total area without sill (m2)</th>
-                  <th>Total area with sill (m2)</th>
+                  <th>C1(m&#178;)</th>
+                  <th>C2(m&#178;)</th>
+                  <th>C3(m&#178;)</th>
+                  <th>C4(m&#178;)</th>
+                  <th>Total area without sill (m&#178;)</th>
+                  <th>Total area with sill (m&#178;)</th>
                 </tr>
               </thead>
               <tbody>
@@ -139,11 +138,26 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
                   <td>{project.volume_detail.c2.toFixed(2)}</td>
                   <td>{project.volume_detail.c3.toFixed(2)}</td>
                   <td>{project.volume_detail.c4.toFixed(2)}</td>
-                  <td>{project.volume.toFixed(2) / 200}</td>
+                  <td>{(project.volume / shoreLength).toFixed(2)}</td>
                   <td>{project.volume_detail.c1.toFixed(2)}</td>
                 </tr>
               </tbody>
             </table>
+            <div className={classes.volume}>
+              <table className={classes.table}>
+                <tr>
+                  <td> Volume with Sill(m&#179;)</td>
+                  <td>
+                    {" "}
+                    {(project.volume_detail.c1 * shoreLength).toFixed(2)}
+                  </td>
+                </tr>
+                <tr>
+                  <td> Volume without Sill(m&#179;)</td>
+                  <td>{project.volume.toFixed(2)}</td>
+                </tr>
+              </table>
+            </div>
           </ReportSection>
         </ReportSinglePage>
         <ReportSinglePage>
