@@ -20,7 +20,7 @@ const BeachNourishmentPage = () => {
   const navigate = useNavigate();
   const { weatherLocation, setWeather, setProject, shoreLength, beachLength } =
     useProjectStore();
-
+  const [beachLengthInput, setBeachLengthInput] = useState(beachLength);
   const formHandle = async (e: FormEvent<HTMLFormElement>) => {
     setLoading(true);
     e.preventDefault();
@@ -45,6 +45,8 @@ const BeachNourishmentPage = () => {
       length_of_beach: lengthOfBeach.value,
       revetment: revetment.value,
     };
+    console.log("length", lengthOfBeach.value);
+    console.log("total length", totalLength.value);
     const res = await fetch(`${import.meta.env.VITE_API}api/closure_depth`, {
       method: "POST",
       headers: {

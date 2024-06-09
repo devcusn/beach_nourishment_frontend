@@ -7,7 +7,6 @@ const TwoDimensionCoast = () => {
   const shoreCoordinates = useProjectStore((state) => state.shoreCoordinates);
   useEffect(() => {
     if (ref.current) {
-      console.log(shoreCoordinates);
       ref.current.width = refContainer.current?.clientWidth || 0;
       const ctx = ref.current.getContext("2d");
       if (!ctx) return;

@@ -23,7 +23,6 @@ const LineChart: React.FunctionComponent<{
   data: Array<Array<number>>;
   beach_length: number;
 }> = ({ data, beach_length = 20 }) => {
-  console.log(beach_length);
   const datas = {
     labels: arange(data.length + beach_length),
 

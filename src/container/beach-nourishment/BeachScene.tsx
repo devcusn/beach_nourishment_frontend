@@ -25,9 +25,6 @@ const BeachRevetment: React.FunctionComponent<BeachRevetmentProps> = ({
   beach_length,
   coast_length,
 }) => {
-  console.log(beach_length, coast_length);
-  console.log("beach_length", beach_length);
-  console.log("coast_length", coast_length);
   return (
     <mesh position={[revetment / 2 + beach_length, 1, coast_length / 2 + 1]}>
       <boxGeometry args={[1, 3, coast_length]} />

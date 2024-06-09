@@ -71,7 +71,7 @@ const MapContainer = () => {
           {selectedStep === 4 && (
             <div>
               <h4>Beach Data</h4>
-              <div>Total Length:{beachLength.toFixed(2)} m</div>
+              <div>Total Length:{(beachLength || 0).toFixed(2)} m</div>
             </div>
           )}
         </div>
