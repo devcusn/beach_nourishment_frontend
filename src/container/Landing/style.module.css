@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  padding: 20px 40px;
+}
+.title {
+  font-size: 36px;
+  font-weight: bold;
+  color: #001b79;
+  font-family: "Mukta", sans-serif;
+  font-weight: 900;
+}
+.menu {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.create_project_btn {
+  padding: 12px 32px;
+  background-color: #11009e;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  height: fit-content;
+}
+.landing_area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+.app_brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+.app_title {
+  font-size: 40px;
+  font-weight: 900;
+  color: #1d2b53;
+}
+.app_description {
+  font-size: 36px;
+  font-family: "Mukta", sans-serif;
+  font-weight: 900;
+  color: #1d2b53;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  width: 100%;
+}
+.features_title {
+  font-size: 32px;
+  background-color: #11009e;
+  color: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  padding: 0px 50px;
+  width: fit-content;
+  margin-bottom: 40px;
+}
+.features_list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 700;
+  width: 70%;
+}
+.feature {
+  display: inline-block;
+  min-width: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 5px 1px #e6e4e4;
+  text-align: center;
+}
