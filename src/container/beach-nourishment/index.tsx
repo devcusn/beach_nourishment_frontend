@@ -75,102 +75,6 @@ const BeachNourishmentPage = () => {
       </div>
       <div className={classes.layout}>
         <div className={classes.layout_left}>
-          <form onSubmit={formHandle} className={classes.inputs}>
-            <h2>Coast & Wave & Soil</h2>
-            <hr />
-            <span className={classes.big_label}>Coast</span>
-            <div>
-              <span className={classes.label}>Total Length(m)</span>
-              <input
-                className={classes.input}
-                defaultValue={shoreLength.toFixed(0)}
-                name="totalLength"
-                placeholder="Total Length(m)"
-              />
-            </div>
-            <div>
-              <span className={classes.label}>Length of the beach(m)</span>
-              <input
-                className={classes.input}
-                defaultValue={beachLength.toFixed(0)}
-                name="lengthOfBeach"
-                placeholder="length of beach(m)"
-              />
-            </div>
-            <div>
-              <span className={classes.label}>Erosion %</span>
-              <input
-                className={classes.input}
-                defaultValue={60}
-                name="erosion"
-                placeholder="Erozion"
-              />
-            </div>
-            <div>
-              <span className={classes.label}>Sill Depth(m)</span>
-              <input
-                className={classes.input}
-                defaultValue={2.5}
-                name="revetment"
-                placeholder="revetment depth(m)"
-              />
-            </div>
-            <span className={classes.big_label}>Wave Properties</span>
-            <div>
-              <span className={classes.label}>Wave Height(m):</span>
-              <input
-                className={classes.input}
-                defaultValue={4}
-                name="wave_height"
-                placeholder="Add wave height(m)"
-              />
-            </div>
-
-            <div>
-              <span className={classes.label}>Wave Period(s):</span>
-              <input
-                className={classes.input}
-                defaultValue={8}
-                name="wave_period"
-                placeholder="Add wave Period(s)"
-              />
-            </div>
-
-            <span className={classes.big_label}>Soil Properties</span>
-            <div>
-              <span className={classes.label}>D(mm):</span>
-              <input
-                className={classes.input}
-                defaultValue={0.1}
-                name="D"
-                placeholder="Add  D(mm)"
-              />
-            </div>
-            <div>
-              <span className={classes.label}>D50(mm):</span>
-              <input
-                className={classes.input}
-                defaultValue={1}
-                name="dfifthy"
-                placeholder="Add  dfifthy (mm)"
-              />
-            </div>
-            <div>
-              <span className={classes.label}>RHO (kg/m^3):</span>
-              <input
-                className={classes.input}
-                defaultValue={1}
-                name="rho"
-                placeholder="Add rho ( kg/m^3)"
-              />
-            </div>
-            <div className={classes.actions}>
-              <button className={"btn-general"} type="submit">
-                Calculate Closure Depth
-              </button>
-            </div>
-          </form>
-          <Weather />
           {data && (
             <>
               <div className={classes.reports}>
@@ -203,6 +107,105 @@ const BeachNourishmentPage = () => {
               </div>
             </>
           )}
+          {!data && (
+            <form onSubmit={formHandle} className={classes.inputs}>
+              <h2>Coast & Wave & Soil</h2>
+              <hr />
+              <span className={classes.big_label}>Coast</span>
+              <div>
+                <span className={classes.label}>Total Length(m)</span>
+                <input
+                  className={classes.input}
+                  defaultValue={shoreLength.toFixed(0)}
+                  name="totalLength"
+                  placeholder="Total Length(m)"
+                />
+              </div>
+              <div>
+                <span className={classes.label}>Length of the beach(m)</span>
+                <input
+                  className={classes.input}
+                  defaultValue={beachLength.toFixed(0)}
+                  name="lengthOfBeach"
+                  placeholder="length of beach(m)"
+                />
+              </div>
+              <div>
+                <span className={classes.label}>Erosion %</span>
+                <input
+                  className={classes.input}
+                  defaultValue={60}
+                  name="erosion"
+                  placeholder="Erozion"
+                />
+              </div>
+              <div>
+                <span className={classes.label}>Sill Depth(m)</span>
+                <input
+                  className={classes.input}
+                  defaultValue={2.5}
+                  name="revetment"
+                  placeholder="revetment depth(m)"
+                />
+              </div>
+              <span className={classes.big_label}>Wave Properties</span>
+              <div>
+                <span className={classes.label}>Wave Height(m):</span>
+                <input
+                  className={classes.input}
+                  defaultValue={4}
+                  name="wave_height"
+                  placeholder="Add wave height(m)"
+                />
+              </div>
+
+              <div>
+                <span className={classes.label}>Wave Period(s):</span>
+                <input
+                  className={classes.input}
+                  defaultValue={8}
+                  name="wave_period"
+                  placeholder="Add wave Period(s)"
+                />
+              </div>
+
+              <span className={classes.big_label}>Soil Properties</span>
+              <div>
+                <span className={classes.label}>D(mm):</span>
+                <input
+                  className={classes.input}
+                  defaultValue={0.1}
+                  name="D"
+                  placeholder="Add  D(mm)"
+                />
+              </div>
+              <div>
+                <span className={classes.label}>D50(mm):</span>
+                <input
+                  className={classes.input}
+                  defaultValue={1}
+                  name="dfifthy"
+                  placeholder="Add  dfifthy (mm)"
+                />
+              </div>
+              <div>
+                <span className={classes.label}>RHO (kg/m^3):</span>
+                <input
+                  className={classes.input}
+                  defaultValue={1}
+                  name="rho"
+                  placeholder="Add rho ( kg/m^3)"
+                />
+              </div>
+              <div className={classes.actions}>
+                <button className={"btn-general"} type="submit">
+                  Calculate Closure Depth
+                </button>
+              </div>
+            </form>
+          )}
+
+          <Weather />
         </div>
         <div className={classes.layout_right}>
           {!data && (
