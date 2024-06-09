@@ -17,3 +17,34 @@
 .leaflet-container {
   height: 100%;
 }
+
+.btn-general {
+  padding: 12px 32px;
+  background-color: #11009e;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  height: fit-content;
+}
+.btn-general:hover {
+  background-color: #0a0067;
+  color: #fdfdfd;
+}
+
+.btn-general-reverse {
+  padding: 12px 32px;
+  background-color: #ffffff;
+  color: #11009e;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  height: fit-content;
+  border: 1px solid #0a0067;
+}
+.btn-general-reverse:hover {
+  background-color: #ffffff;
+  color: #0a0067;
+}

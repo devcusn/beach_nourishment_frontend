@@ -165,7 +165,7 @@ const BeachNourishmentPage = () => {
               />
             </div>
             <div className={classes.actions}>
-              <button className={classes.btn} type="submit">
+              <button className={"btn-general"} type="submit">
                 Calculate Closure Depth
               </button>
             </div>
@@ -181,9 +181,14 @@ const BeachNourishmentPage = () => {
                   Closure Depth X : {Number(data["closure_depth_x"]).toFixed(2)}{" "}
                   m
                 </div>
-                <div>A : {Number(data["A"]).toFixed(2)} </div>
                 <div>Volume : {Number(data["volume"]).toFixed(2)} m^3 </div>
-                <button onClick={() => navigate("/report")}>Open Report</button>
+                <div>A : {Number(data["A"]).toFixed(2)} </div>
+                <button
+                  className="btn-general"
+                  onClick={() => navigate("/report")}
+                >
+                  Open Report
+                </button>
               </div>
               <div className={classes.chart}>
                 {

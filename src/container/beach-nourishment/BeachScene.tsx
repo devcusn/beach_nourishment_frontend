@@ -204,8 +204,15 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
           </>
         )}
       </Canvas>
-      <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <button onClick={() => fullScreenHandler()}>FullSceen</button>
+      <div
+        style={{ display: "flex", justifyContent: "flex-end", padding: "4px" }}
+      >
+        <button
+          className="btn-general-reverse"
+          onClick={() => fullScreenHandler()}
+        >
+          Full Screen
+        </button>
       </div>
     </div>
   );

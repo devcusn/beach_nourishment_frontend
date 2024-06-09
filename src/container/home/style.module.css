@@ -40,14 +40,18 @@
   margin-bottom: 20px;
 }
 .big_btn {
-  padding: 12px 20px;
-  width: 200px;
-  margin-top: 10px;
+  padding: 12px 32px;
+  background-color: #11009e;
+  color: #ffffff;
   border: none;
   cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  height: fit-content;
 }
 .big_btn:hover {
-  background-color: #fdfdfd;
+  background-color: #0a0067;
+  color: #fdfdfd;
 }
 .location {
   background-color: #ffffff;
