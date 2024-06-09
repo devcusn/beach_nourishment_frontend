@@ -39,7 +39,9 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
                 padding: "12px 0px",
               }}
             >
-              {` it is a beach nourishment project that will be realized in Giresun
+              {` it is a beach nourishment project that will be realized in ${
+                projectLocation[2]
+              }
               at ${projectLocation[0]}, ${
                 projectLocation[1]
               }. The total length of

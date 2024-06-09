@@ -51,7 +51,7 @@ const Home = () => {
             return (
               <div
                 onClick={() => {
-                  setProjectLocation([l.lat, l.lon]);
+                  setProjectLocation([l.lat, l.lon, l.display_name as number]);
                 }}
                 className={classes.location}
               >
