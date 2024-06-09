@@ -20,9 +20,10 @@ const MapContainer = () => {
   const navigate = useNavigate();
 
   const handleGetWeatherData = useCallback(async () => {
-    const res = await getWeather(weatherLocation[0], weatherLocation[1]);
+    const loc = weatherLocation[0] === 0 ? projectLocation : weatherLocation;
+    const res = await getWeather(loc[0], loc[1]);
     setWeather(res);
-  }, [setWeather, weatherLocation]);
+  }, [projectLocation, setWeather, weatherLocation]);
 
   useEffect(() => {
     handleGetWeatherData();
