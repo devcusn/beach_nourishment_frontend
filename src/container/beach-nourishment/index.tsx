@@ -45,7 +45,7 @@ const BeachNourishmentPage = () => {
       length_of_beach: lengthOfBeach.value,
       revetment: revetment.value,
     };
-    const res = await fetch("http://127.0.0.1:5000/api/closure_depth", {
+    const res = await fetch(`${import.meta.env.VITE_API}api/closure_depth`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,5 +1,9 @@
 import classes from "./style.module.css";
-const ReportSinglePage = ({ children }) => {
+import { ReportSinglePageProps } from "./types";
+
+const ReportSinglePage: React.FunctionComponent<ReportSinglePageProps> = ({
+  children,
+}) => {
   return <div className={classes.report}>{children}</div>;
 };
 export default ReportSinglePage;

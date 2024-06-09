@@ -16,7 +16,7 @@ import { LatLngExpression, Icon } from "leaflet";
 import useProjectStore from "../../store/projectStore";
 import { polylineDistance } from "../../utils/haversineDistance";
 //import LocationIcon from "../../assets/location-sign.svg";
-import { MapFeatureProps } from "./types";
+import { MapFeatureProps, MapProps } from "./types";
 
 // const CreatePolygon = ({ isActive }) => {
 //   const [polygones, setpolygonesPoints] = useState([]);
@@ -38,7 +38,7 @@ import { MapFeatureProps } from "./types";
 const CreatePolyLine: React.FunctionComponent<MapFeatureProps> = ({
   isActive,
 }) => {
-  const [polygones, setpolygonesPoints] = useState([]);
+  const [polygones, setpolygonesPoints] = useState<Array<Array<number>>>([]);
 
   const map = useMapEvents({
     click(e) {
@@ -58,7 +58,10 @@ const CreatePolyLine: React.FunctionComponent<MapFeatureProps> = ({
   }, [isActive, polygones, setShoreCoordinates, setShoreLength]);
 
   return polygones === null ? null : (
-    <Polyline pathOptions={{ color: "red" }} positions={polygones} />
+    <Polyline
+      pathOptions={{ color: "red" }}
+      positions={polygones as LatLngExpression[]}
+    />
   );
 };
 
@@ -82,15 +85,15 @@ const CreateMarker: React.FunctionComponent<MapFeatureProps> = ({
 
   useEffect(() => {
     if (isActive) {
-      setWeatherLocation(position);
+      setWeatherLocation(position as Array<number>);
     }
-  }, [position, setWeatherLocation]);
+  }, [isActive, position, setWeatherLocation]);
 
   return (
     <Marker position={position}>
       <Popup>
-        <div>Lat: {position[0]}</div>
-        <div>Lon: {position[1]}</div>
+        <div>Lat: {(position as Array<number>)[0]}</div>
+        <div>Lon: {(position as Array<number>)[1]}</div>
       </Popup>
     </Marker>
   );
@@ -126,8 +129,8 @@ const CreateLocationMarker: React.FunctionComponent<MapFeatureProps> = ({
   );
 };
 
-const CreateLine = ({ isActive }) => {
-  const [polygones, setpolygonesPoints] = useState([]);
+const CreateLine: React.FunctionComponent<MapFeatureProps> = ({ isActive }) => {
+  const [polygones, setpolygonesPoints] = useState<Array<Array<number>>>([]);
 
   const map = useMapEvents({
     click(e) {
@@ -141,20 +144,29 @@ const CreateLine = ({ isActive }) => {
 
   useEffect(() => {
     if (isActive) {
-      setBeachLength(polylineDistance(polygones));
+      if (polygones.length > 0) {
+        setBeachLength(polylineDistance(polygones));
+      }
     }
   }, [isActive, polygones, setBeachLength]);
 
   return polygones === null ? null : (
-    <Polyline pathOptions={{ color: "blue" }} positions={polygones} />
+    <Polyline
+      pathOptions={{ color: "blue" }}
+      positions={polygones as LatLngExpression[]}
+    />
   );
 };
 
-const Map = ({ height, feature }) => {
+const Map: React.FunctionComponent<MapProps> = ({ height, feature }) => {
   const position = [41.00778, 38.81083];
   return (
     <div style={{ width: "100%", height: height }}>
-      <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
+      <MapContainer
+        center={position as LatLngExpression}
+        zoom={13}
+        scrollWheelZoom={true}
+      >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

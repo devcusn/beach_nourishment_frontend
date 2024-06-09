@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Line, OrbitControls } from "@react-three/drei";
-import { BeachSceneProps } from "./types";
+import { BeachRevetmentProps, BeachSceneProps, GroinProps } from "./types";
 import { arange } from "../../utils/arange";
 import * as THREE from "three";
 import classes from "./style.module.css";
 import useToggle from "../../hooks/useToggle";
 
-const Grain = ({ z, length, x }) => {
-  console.log("beach", length);
+const Groin: React.FunctionComponent<GroinProps> = ({ length, x, z }) => {
   return (
     <>
       <mesh position={[length, 0, z]}>
@@ -19,7 +20,11 @@ const Grain = ({ z, length, x }) => {
   );
 };
 
-const BeachRevetment = ({ revetment, beach_length, coast_length }) => {
+const BeachRevetment: React.FunctionComponent<BeachRevetmentProps> = ({
+  revetment,
+  beach_length,
+  coast_length,
+}) => {
   console.log(beach_length, coast_length);
   console.log("beach_length", beach_length);
   console.log("coast_length", coast_length);
@@ -41,10 +46,11 @@ const BeachWater = ({
   const dummy = new THREE.Object3D();
   const dummyColor = new THREE.Color();
 
-  const meshRef = useRef(null);
+  const meshRef = useRef<THREE.InstancedMesh>(null);
   const edge = 0.9;
 
   useEffect(() => {
+    if (!meshRef.current) return;
     for (let m = 0; m < matris.length; m++) {
       const color = matris[m][3];
       dummy.position.set(matris[m][0] - x / 2, matris[m][1], matris[m][2]);
@@ -75,10 +81,11 @@ const BeachSoil = ({
   const dummy = new THREE.Object3D();
   const dummyColor = new THREE.Color();
 
-  const meshRef = useRef(null);
+  const meshRef = useRef<THREE.InstancedMesh>(null);
   const edge = 0.4;
 
   useEffect(() => {
+    if (!meshRef.current) return;
     for (let m = 0; m < matris.length; m++) {
       const color = matris[m][3];
       dummy.position.set(matris[m][0] - x / 2, matris[m][1], matris[m][2]);
@@ -113,7 +120,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
   const ref = useRef<HTMLDivElement | null>(null);
   const [selectedScreen, setSelectedScreen] = useState(0);
 
-  const fullScreenHandler = (t) => {
+  const fullScreenHandler = () => {
     setSelectedScreen(selectedScreen === 0 ? 1 : 0);
   };
   useEffect(() => {
@@ -136,10 +143,7 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
       {selectedScreen === 1 && (
         <div style={{ padding: "20px", backgroundColor: "#ffffff" }}>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
-            <button
-              className={classes.btn}
-              onClick={() => fullScreenHandler(0)}
-            >
+            <button className={classes.btn} onClick={() => fullScreenHandler()}>
               Exit From Fullscreen
             </button>
           </div>
@@ -198,13 +202,13 @@ const BeachScene: React.FunctionComponent<BeachSceneProps> = ({
 
         {tGrain && (
           <>
-            <Grain z={-2} length={beach_length} x={x} />
-            <Grain z={coast_length + 2} length={beach_length} x={x} />
+            <Groin z={-2} length={beach_length} x={x} />
+            <Groin z={coast_length + 2} length={beach_length} x={x} />
           </>
         )}
       </Canvas>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <button onClick={() => fullScreenHandler(1)}>FullSceen</button>
+        <button onClick={() => fullScreenHandler()}>FullSceen</button>
       </div>
     </div>
   );

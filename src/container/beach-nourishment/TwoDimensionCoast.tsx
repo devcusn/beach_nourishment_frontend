@@ -8,7 +8,7 @@ const TwoDimensionCoast = () => {
   useEffect(() => {
     if (ref.current) {
       console.log(shoreCoordinates);
-      ref.current.width = refContainer.current?.clientWidth;
+      ref.current.width = refContainer.current?.clientWidth || 0;
       const ctx = ref.current.getContext("2d");
       if (!ctx) return;
       const coordinates = shoreCoordinates;
@@ -36,7 +36,7 @@ const TwoDimensionCoast = () => {
       ctx.beginPath();
 
       // Move to the first coordinate
-      let { x, y } = mapCoordinates(
+      const { x, y } = mapCoordinates(
         coordinates[0][0],
         coordinates[0][1],
         ref.current.width,
@@ -46,7 +46,7 @@ const TwoDimensionCoast = () => {
 
       // Loop through the rest of the coordinates and draw lines to them
       for (let i = 1; i < coordinates.length; i++) {
-        let { x, y } = mapCoordinates(
+        const { x, y } = mapCoordinates(
           coordinates[i][0],
           coordinates[i][1],
           ref.current.width,

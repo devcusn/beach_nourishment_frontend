@@ -51,7 +51,7 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
           </ReportSection>
           <ReportSection title={"Location"}>
             <div>
-              <Map height={"250px"} />
+              <Map height={"250px"} feature={0} />
             </div>
           </ReportSection>
           <ReportSection title={"Location"}>
@@ -150,7 +150,6 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
                 <BeachScene
                   A={data["A"]}
                   x={data["closure_depth_x"]}
-                  z={data["total_length"]}
                   y={-1 * data["closure_depth"]}
                   matris={data["matris"]}
                   beach_length={data["beach_length"]}
