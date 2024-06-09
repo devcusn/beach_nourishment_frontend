@@ -12,6 +12,7 @@ import LoaderNoPreview from "../../components/LoaderNoPreview";
 import { useNavigate } from "react-router-dom";
 import { getWeather } from "../../services/endpoints";
 import Weather from "./components/Weather/Weather";
+import Loader from "../../components/Loader";
 
 const BeachNourishmentPage = () => {
   const [data, setData] = useState(null);
@@ -235,6 +236,7 @@ const BeachNourishmentPage = () => {
       {toggleReport && (
         <Report toggleReport={() => setToggleReport(!toggleReport)} />
       )}
+      {loading && <Loader />}
     </>
   );
 };
