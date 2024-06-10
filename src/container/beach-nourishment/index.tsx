@@ -33,6 +33,7 @@ const BeachNourishmentPage = () => {
       totalLength,
       lengthOfBeach,
       revetment,
+      erosion,
     } = e.target;
 
     const values = {
@@ -57,7 +58,7 @@ const BeachNourishmentPage = () => {
 
     setLoading(false);
     setData(data.data);
-    setProject(data.data);
+    setProject({ ...data.data, erosion: erosion.value });
   };
 
   const handleGetWeatherData = useCallback(async () => {
@@ -86,8 +87,12 @@ const BeachNourishmentPage = () => {
                   Closure Depth X : {Number(data["closure_depth_x"]).toFixed(2)}{" "}
                   m
                 </div>
-                <div>Volume : {Number(data["volume"]).toFixed(2)} m^3 </div>
-                <div>A : {Number(data["A"]).toFixed(2)} </div>
+                <div>
+                  Volume : {Number(data["volume"]).toFixed(2)} (m<sup>3</sup>)
+                </div>
+                <div>
+                  A(m<sup>1/3</sup>): {Number(data["A"]).toFixed(2)}{" "}
+                </div>
                 <button
                   className="btn-general"
                   onClick={() => navigate("/report")}

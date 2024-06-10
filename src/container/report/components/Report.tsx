@@ -91,7 +91,9 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
               <span>{project.closure_depth_x.toFixed(2)}</span>
             </div>
             <div>
-              <span>A:</span>
+              <span>
+                m<sup>1/3</sup>:
+              </span>
               <span>{project.A.toFixed(2)}</span>
             </div>
           </ReportSection>
@@ -159,6 +161,14 @@ const ReportComponent: React.FunctionComponent<ReportProps> = () => {
                   <td>{project.volume.toFixed(2)}</td>
                 </tr>
               </table>
+            </div>
+            <div>
+              <h4>Erosion</h4>
+              <div>Erosion:{project.erosion}% </div>
+              <div>
+                After Errosion :{" "}
+                {((beachLength * (100 - project.erosion)) / 100).toFixed(2)}m
+              </div>
             </div>
           </ReportSection>
         </ReportSinglePage>

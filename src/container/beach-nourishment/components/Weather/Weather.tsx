@@ -11,7 +11,7 @@ const Weather = () => {
         <OutPut label="Data Center" value={weather.base} />
         <h4>Wind Data</h4>
         <OutPut label="Wind Speed " value={`${weather.wind.speed} km/s`} />
-        <OutPut label="Wind Gust" value={weather.wind.gust} />
+        <OutPut label="Wind Gust " value={`${weather.wind.gust}  km/s`} />
         <OutPut label="Wind Def" value={`${weather.wind.deg}°`} />
 
         <h4>Tempature</h4>
@@ -23,8 +23,8 @@ const Weather = () => {
         <OutPut label="Pressure" value={`${weather.main.pressure}`} />
         <OutPut label="Humidity" value={`${weather.main.humidity}`} />
         <h4>Level</h4>
-        <OutPut label="Sea Level" value={`${weather.main.sea_level}`} />
-        <OutPut label="Grnd Level " value={`${weather.main.grnd_level}`} />
+        <OutPut label="Sea Level" value={`${weather.main.sea_level} m`} />
+        <OutPut label="Grnd Level " value={`${weather.main.grnd_level} m`} />
       </table>
     </div>
   );

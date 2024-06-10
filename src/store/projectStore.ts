@@ -31,6 +31,7 @@ type ProjectModel = {
     c3: number;
     c4: number;
   };
+  erosion: number;
 };
 interface ProjectState {
   name: string;
@@ -61,6 +62,7 @@ const useProjectStore = create<ProjectState>()(
       name: "",
       weatherLocation: [0, 0],
       project: {
+        erosion: 0,
         closure_depth_x: 0,
         A: 0,
         beach_length: 0,
